@@ -1,0 +1,8 @@
+# IDE-spezifische Dateien (IntelliJ IDEA)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Build-Artefakte (Maven)
+target/
