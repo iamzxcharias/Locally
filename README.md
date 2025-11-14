@@ -5,10 +5,9 @@ Practical Project for the Backend Module.
 ```
 project-root/
 ├── .gitignore
-├── pom.xml                                 <-- Maven Konfigurationsdatei 
-├── README.md                               <-- Wichtig: Startanleitung, Testhinweise 
-├── Dockerfile                              <-- Für die Bereitstellung als Container 
-│
+├── pom.xml                              <-- Maven Konfigurationsdatei 
+├── README.md                            <-- Wichtig: Startanleitung, Testhinweise 
+├── Dockerfile                           <-- Für die Bereitstellung als Container
 ├── src/
 │   ├── main/
 │   │   ├── java/
@@ -26,10 +25,10 @@ project-root/
 │   │   │        ├── entity/             <-- JPA-Entities (Datenbank-Mapping) 
 │   │   │        └── repository/         <-- Data Access Layer (z.B. Panache/Hibernate) 
 │   │   │
-│   │   └── resources/                      <-- Quarkus Konfigurationsdateien
-│   │       └── application.properties      <-- DB-Zugangsdaten, Ports, etc.
+│   │   └── resources/                   <-- Quarkus Konfigurationsdateien
+│   │       └── application.properties   <-- DB-Zugangsdaten, Ports, etc.
 │   │
-│   └── test/                               <-- Hier kommen alle Tests hinein 
+│   └── test/                            <-- Hier kommen alle Tests hinein 
 │       └── java/
 │            ├── domain/                 <-- Unit Tests für die Geschäftslogik 
 │            │   └── service/
@@ -43,5 +42,5 @@ project-root/
 │                └── repository/
 │                    └── CustomerRepositoryTest.java
 │
-└── screencast.mp4                          <-- Optional, falls im Repository gespeichert 
+└── screencast.mp4                       <-- Optional, falls im Repository gespeichert 
 ```
