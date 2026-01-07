@@ -5,18 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1f4aa89-4590-4029-a5e3-dd06239d49a7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/model/Event.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/model/Friendship.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/model/FriendshipStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/model/Participation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/model/ParticipationStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/port/EventRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/service/EventService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/domain/service/EventServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/port/FriendshipRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/port/ParticipationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/port/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/service/ParticipationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/domain/service/ParticipationServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/domain/service/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_11_2025_09_17_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_11_2025_09_17__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,18 +36,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "basti-byte"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;basti-byte&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/iamzxcharias/Locally.git",
-    "accountId": "ef9134f2-2f3f-4efb-981c-ebf3b61f0c32"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/iamzxcharias/Locally.git&quot;,
+    &quot;accountId&quot;: &quot;ef9134f2-2f3f-4efb-981c-ebf3b61f0c32&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -65,8 +63,12 @@
   "keyToString": {
     "Application.TestClass.executor": "Run",
     "JUnit.EventServiceTest.executor": "Run",
+    "JUnit.EventServiceTest.shouldCreateEventSuccessfully.executor": "Run",
+    "JUnit.ParticipationServiceTest.executor": "Run",
+    "JUnit.UserServiceTest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "6-first-use-case-implement-domain-layer",
@@ -90,7 +92,7 @@
       <recent name="$PROJECT_DIR$/Locally/.idea" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EventServiceTest">
+  <component name="RunManager" selected="JUnit.ParticipationServiceTest">
     <configuration name="TestClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="TestClass" />
       <module name="Locally" />
@@ -108,6 +110,52 @@
       </extension>
       <option name="PACKAGE_NAME" value="domain.service" />
       <option name="MAIN_CLASS_NAME" value="domain.service.EventServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EventServiceTest.shouldCreateEventSuccessfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Locally" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="domain.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="domain.service" />
+      <option name="MAIN_CLASS_NAME" value="domain.service.EventServiceTest" />
+      <option name="METHOD_NAME" value="shouldCreateEventSuccessfully" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParticipationServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Locally" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="domain.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="domain.service" />
+      <option name="MAIN_CLASS_NAME" value="domain.service.ParticipationServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Locally" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="domain.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="domain.service" />
+      <option name="MAIN_CLASS_NAME" value="domain.service.UserServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -153,7 +201,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ParticipationServiceTest" />
         <item itemvalue="JUnit.EventServiceTest" />
+        <item itemvalue="JUnit.UserServiceTest" />
+        <item itemvalue="JUnit.EventServiceTest.shouldCreateEventSuccessfully" />
         <item itemvalue="Application.TestClass" />
       </list>
     </recent_temporary>
@@ -176,7 +227,8 @@
       <updated>1764234209744</updated>
       <workItem from="1764234215023" duration="1603000" />
       <workItem from="1764235862121" duration="428000" />
-      <workItem from="1764237179020" duration="12635000" />
+      <workItem from="1764237179020" duration="29502000" />
+      <workItem from="1767785466949" duration="2360000" />
     </task>
     <servers />
   </component>
