@@ -1,7 +1,3 @@
-Hier ist die angepasste **README.md** für dein Projekt. Die Struktur wurde so aktualisiert, dass die Mapper-Schicht innerhalb der Persistence-Komponente sowie die dazugehörige Teststrategie klar dokumentiert sind.
-
----
-
 # Locally - Backend Architektur Dokumentation
 
 Dieses Projekt basiert auf einer hexagonalen Architektur (Ports and Adapters) unter Verwendung von Quarkus. Diese Struktur stellt sicher, dass die Geschäftslogik strikt von technischen Infrastruktur-Details getrennt bleibt.
