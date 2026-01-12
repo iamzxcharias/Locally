@@ -53,7 +53,7 @@ public class EventJpaEntity {
         this.creatorId = creatorId;
     }
 
-    // --- Getter (wichtig für den Adapter) ---
+    // --- Getter ---
     public UUID getId() { return id; }
     public String getTitle() { return title; }
     public String getCategory() { return category; }
@@ -64,7 +64,7 @@ public class EventJpaEntity {
     public Double getLng() { return lng; }
     public UUID getCreatorId() { return creatorId; }
 
-    // --- Setter (wichtig für Hibernate beim Laden aus der DB) ---
+    // --- Setter ---
     public void setId(UUID id) { this.id = id; }
     public void setTitle(String title) { this.title = title; }
     public void setCategory(String category) { this.category = category; }
