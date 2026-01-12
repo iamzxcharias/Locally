@@ -34,9 +34,11 @@
   "keyToString": {
     "Application.TestClass.executor": "Run",
     "JUnit.EventJpaRepositoryTest.executor": "Run",
+    "JUnit.EventMapperTest.executor": "Run",
     "JUnit.FriendshipJpaRepositoryTest.executor": "Run",
     "JUnit.ParticipationJpaRepositoryTest.executor": "Run",
     "JUnit.UserJpaRepositoryTest.executor": "Run",
+    "JUnit.UserMapperTest.executor": "Run",
     "Maven.Locally [install].executor": "Run",
     "git-widget-placeholder": "10-implement-full-crud-operations-domain-persistence",
     "project.structure.last.edited": "Modules",

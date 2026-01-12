@@ -15,8 +15,8 @@ public class EventMapper {
                 event.getDescription(),
                 event.getStartsAt(),
                 event.getPlaceName(),
-                event.getLat(), // Korrigiert
-                event.getLng(), // Korrigiert
+                event.getLat(),
+                event.getLng(),
                 event.getCreatorId()
         );
     }
@@ -25,8 +25,8 @@ public class EventMapper {
         return new Event(
                 entity.getId(),
                 entity.getTitle(),
-                entity.getDescription(),
                 entity.getCategory(),
+                entity.getDescription(),
                 entity.getStartsAt(),
                 entity.getPlaceName(),
                 entity.getLat(),
