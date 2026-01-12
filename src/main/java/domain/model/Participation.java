@@ -24,7 +24,7 @@ public class Participation {
 
     // Privater Konstruktor für das "Kopieren" (für Immutability)
     // Wir übergeben hier die *bestehende* ID, damit die Identität erhalten bleibt.
-    private Participation(UUID id, UUID userId, UUID eventId, ParticipationStatus status, LocalDateTime createdAt) {
+    public Participation(UUID id, UUID userId, UUID eventId, ParticipationStatus status, LocalDateTime createdAt) {
         // Hier keine Validierung nötig, da wir Daten aus einem validen Objekt kopieren
         this.id = id;
         this.userId = userId;
