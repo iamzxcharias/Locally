@@ -12,4 +12,8 @@ public interface EventRepository {
     // Für spätere Use Cases (UC2), aber gut, es schon im Kopf zu haben
     Optional<Event> findById(UUID id);
     List<Event> findAll();
+
+    List<Event> findByCreatorId(UUID creatorId);
+
+    void delete(UUID id);
 }
