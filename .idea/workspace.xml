@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="" />
+    <list default="true" id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,22 +32,22 @@
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.TestClass.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EventJpaRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FriendshipJpaRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ParticipationJpaRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserJpaRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.Locally [install].executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;9-integration-tests-for-persistence-component&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.TestClass.executor": "Run",
+    "JUnit.EventJpaRepositoryTest.executor": "Run",
+    "JUnit.FriendshipJpaRepositoryTest.executor": "Run",
+    "JUnit.ParticipationJpaRepositoryTest.executor": "Run",
+    "JUnit.UserJpaRepositoryTest.executor": "Run",
+    "Maven.Locally [install].executor": "Run",
+    "git-widget-placeholder": "10-implement-full-crud-operations-domain-persistence",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.runner"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Locally" />

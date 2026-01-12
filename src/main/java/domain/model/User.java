@@ -20,6 +20,12 @@ public class User {
         this.email = email;
     }
 
+    public User(UUID id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+
     private void validate(String name, String email) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("User name must not be empty."); //
