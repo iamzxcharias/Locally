@@ -9,7 +9,6 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "events")
-
 public class EventJpaEntity {
 
     @Id
@@ -37,8 +36,11 @@ public class EventJpaEntity {
 
     // --- Konstruktoren ---
 
-    protected EventJpaEntity() {}
+    // WICHTIG: Der Standard-Konstruktor ohne Parameter für JPA/Hibernate
+    protected EventJpaEntity() {
+    }
 
+    // Dein öffentlicher Konstruktor für das Mapping
     public EventJpaEntity(UUID id, String title, String category, String description,
                           LocalDateTime startsAt, String placeName, Double lat,
                           Double lng, UUID creatorId) {

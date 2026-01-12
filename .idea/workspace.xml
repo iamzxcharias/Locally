@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TestClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/entity/EventJpaEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/entity/EventJpaEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/repository/FriendshipJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/repository/FriendshipJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestClass.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +27,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MavenRunner">
+    <option name="delegateBuildToMaven" value="true" />
+    <option name="jreName" value="21" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
@@ -31,12 +40,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.TestClass.executor": "Run",
-    "git-widget-placeholder": "8-implement-persistence-adapter",
-    "project.structure.last.edited": "Facets",
+    "JUnit.EventJpaRepositoryTest.executor": "Run",
+    "JUnit.FriendshipJpaRepositoryTest.executor": "Run",
+    "JUnit.ParticipationJpaRepositoryTest.executor": "Run",
+    "JUnit.UserJpaRepositoryTest.executor": "Run",
+    "Maven.Locally [install].executor": "Run",
+    "git-widget-placeholder": "9-integration-tests-for-persistence-component",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors"
+    "settings.editor.selected.configurable": "reference.settings.project.maven.runner"
   }
 }]]></component>
   <component name="RunManager">
