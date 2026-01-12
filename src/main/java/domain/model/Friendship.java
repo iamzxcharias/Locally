@@ -27,7 +27,7 @@ public class Friendship {
     }
 
     //für Erstellung von Objekt-Kopien mit Wither-Methode
-    private Friendship(UUID id, UUID requesterId, UUID addresseeId, FriendshipStatus status, LocalDateTime createdAt) {
+    public Friendship(UUID id, UUID requesterId, UUID addresseeId, FriendshipStatus status, LocalDateTime createdAt) {
         this.id = id;
         this.requesterId = requesterId;
         this.addresseeId = addresseeId;
