@@ -1,4 +1,4 @@
-package java.persistence.entity;
+package persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
