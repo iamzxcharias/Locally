@@ -4,27 +4,22 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Event {
+    private UUID id;
+    private String title;
+    private String category;
+    private String description;
+    private LocalDateTime startsAt;
+    private String placeName;
+    private double lat;
+    private double lng;
+    private UUID creatorId;
 
-    private final UUID id;
-    private final String title;
-    private final String category;
-    private final String description;
-    private final LocalDateTime startsAt;
-    private final String placeName;
-    private final Double lat;
-    private final Double lng;
-    private final UUID creatorId; // referenziert User
-
-    // Konstruktor
-    public Event(String title, String category, String description, LocalDateTime startsAt,
-                 String placeName, Double lat, Double lng, UUID creatorId) {
-
-        // 1. Invarianten prüfen (Validierung VOR Objekterzeugung)
-        validate(title, startsAt, lat, lng, creatorId);
-
-        // 2. ID wird domainseitig erzeugt
+    // 1. KONSTRUKTOR: Für neue Events (8 Parameter)
+    // Wird in deinen IntegrationTests und im Service genutzt.
+    public Event(String title, String category, String description,
+                 LocalDateTime startsAt, String placeName, double lat,
+                 double lng, UUID creatorId) {
         this.id = UUID.randomUUID();
-
         this.title = title;
         this.category = category;
         this.description = description;
@@ -35,34 +30,41 @@ public class Event {
         this.creatorId = creatorId;
     }
 
-    // Validierungs-Logik (Strikte Domain-Regeln)
-    private void validate(String title, LocalDateTime startsAt, Double lat, Double lng, UUID creatorId) {
-        if (title == null || title.trim().isEmpty()) {
-            throw new IllegalArgumentException("Event title must not be empty."); //
-        }
-        if (startsAt == null || startsAt.isBefore(LocalDateTime.now())) {
-            throw new IllegalArgumentException("Event start time must be in the future."); //
-        }
-        if (creatorId == null) {
-            throw new IllegalArgumentException("Event must have a creator.");
-        }
-        // Einfache Geo-Validierung (-90 bis +90 Lat, -180 bis +180 Lng)
-        if (lat != null && (lat < -90 || lat > 90)) {
-            throw new IllegalArgumentException("Latitude must be between -90 and 90."); //
-        }
-        if (lng != null && (lng < -180 || lng > 180)) {
-            throw new IllegalArgumentException("Longitude must be between -180 and 180."); //
-        }
+    // 2. KONSTRUKTOR: Für den EventMapper (9 Parameter)
+    // Wird genutzt, um existierende Events aus der DB zu laden.
+    public Event(UUID id, String title, String category, String description,
+                 LocalDateTime startsAt, String placeName, double lat,
+                 double lng, UUID creatorId) {
+        this.id = id;
+        this.title = title;
+        this.category = category;
+        this.description = description;
+        this.startsAt = startsAt;
+        this.placeName = placeName;
+        this.lat = lat;
+        this.lng = lng;
+        this.creatorId = creatorId;
     }
 
-    // Getter (Keine Setter, um Immutability zu fördern - das Objekt bleibt stabil)
+    // --- GETTER ---
     public UUID getId() { return id; }
     public String getTitle() { return title; }
     public String getCategory() { return category; }
     public String getDescription() { return description; }
     public LocalDateTime getStartsAt() { return startsAt; }
     public String getPlaceName() { return placeName; }
-    public Double getLat() { return lat; }
-    public Double getLng() { return lng; }
+    public double getLat() { return lat; }
+    public double getLng() { return lng; }
     public UUID getCreatorId() { return creatorId; }
+
+    // --- SETTER ---
+    public void setId(UUID id) { this.id = id; }
+    public void setTitle(String title) { this.title = title; }
+    public void setCategory(String category) { this.category = category; }
+    public void setDescription(String description) { this.description = description; }
+    public void setStartsAt(LocalDateTime startsAt) { this.startsAt = startsAt; }
+    public void setPlaceName(String placeName) { this.placeName = placeName; }
+    public void setLat(double lat) { this.lat = lat; }
+    public void setLng(double lng) { this.lng = lng; }
+    public void setCreatorId(UUID creatorId) { this.creatorId = creatorId; }
 }
