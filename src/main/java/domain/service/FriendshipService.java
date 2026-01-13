@@ -1,0 +1,51 @@
+package domain.service;
+
+import domain.model.Friendship;
+import domain.model.FriendshipStatus;
+import domain.port.FriendshipRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+
+import java.util.UUID;
+
+@ApplicationScoped
+public class FriendshipService {
+
+    private final FriendshipRepository friendshipRepository;
+
+    @Inject
+    public FriendshipService(FriendshipRepository friendshipRepository) {
+        this.friendshipRepository = friendshipRepository;
+    }
+
+
+    @Transactional
+    public Friendship requestFriendship(UUID requesterId, UUID addresseeId) {
+        if (requesterId.equals(addresseeId)) {
+            throw new IllegalArgumentException("You cannot be friends with yourself.");
+        }
+
+        if (friendshipRepository.existsByRequesterAndAddressee(requesterId, addresseeId)) {
+            throw new IllegalArgumentException("A friendship request already exists.");
+        }
+
+        Friendship friendship = new Friendship(requesterId, addresseeId);
+
+        friendshipRepository.save(friendship);
+        return friendship;
+    }
+
+
+    @Transactional
+    public Friendship acceptFriendship(UUID friendshipId) {
+        Friendship friendship = friendshipRepository.findById(friendshipId)
+                .orElseThrow(() -> new RuntimeException("Friendship request not found."));
+
+        Friendship acceptedFriendship = friendship.accept();
+
+        friendshipRepository.save(acceptedFriendship);
+
+        return acceptedFriendship;
+    }
+}
