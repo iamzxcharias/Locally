@@ -4,12 +4,13 @@ import domain.model.User;
 import domain.port.UserRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import persistence.entity.UserJpaEntity;
 import persistence.mapper.UserMapper;
 import persistence.repository.UserJpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class UserPersistenceAdapter implements UserRepository {
@@ -22,9 +23,12 @@ public class UserPersistenceAdapter implements UserRepository {
 
     @Override
     public void save(User user) {
-        UserJpaEntity entity = userMapper.toEntity(user);
+        userJpaRepository.getEntityManager().merge(userMapper.toEntity(user));
+    }
 
-        userJpaRepository.getEntityManager().merge(entity);
+    @Override
+    public boolean existsByEmail(String email) {
+        return userJpaRepository.find("email", email).count() > 0;
     }
 
     @Override
@@ -34,7 +38,15 @@ public class UserPersistenceAdapter implements UserRepository {
     }
 
     @Override
-    public boolean existsByEmail(String email) {
-        return userJpaRepository.findByEmail(email).isPresent();
+    public List<User> findAll() {
+        // Panache listAll() nutzen und per Mapper umwandeln
+        return userJpaRepository.listAll().stream()
+                .map(userMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void delete(UUID id) {
+        userJpaRepository.deleteById(id);
     }
 }
