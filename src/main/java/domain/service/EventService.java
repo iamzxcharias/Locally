@@ -4,6 +4,7 @@ import domain.model.Event;
 import domain.port.EventRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,7 +20,7 @@ public class EventService {
         this.eventRepository = eventRepository;
     }
 
-
+    @Transactional
     public Event createEvent(String title, String category, String description,
                              LocalDateTime startsAt, String placeName,
                              Double lat, Double lng, UUID creatorId) {
@@ -39,6 +40,7 @@ public class EventService {
                 .orElseThrow(() -> new RuntimeException("Event not found with id: " + id));
     }
 
+    @Transactional
     public void deleteEvent(UUID id) {
         eventRepository.delete(id);
     }
