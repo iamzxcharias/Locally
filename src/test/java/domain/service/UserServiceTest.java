@@ -1,17 +1,18 @@
 package domain.service;
 
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
-
+import domain.model.User;
+import domain.port.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import domain.port.UserRepository;
-import domain.model.User;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 class UserServiceTest {
 
-    private UserService userService;
     private UserRepository userRepository;
+    private UserService userService;
 
     @BeforeEach
     void setUp() {
@@ -21,35 +22,28 @@ class UserServiceTest {
 
     @Test
     void shouldRegisterUserSuccessfully() {
-        // --- ARRANGE ---
-        // Wir simulieren: Die E-Mail ist noch NICHT vergeben
-        when(userRepository.existsByEmail("test@example.com")).thenReturn(false);
+        String name = "Max Mustermann";
+        String email = "max@test.de";
+        when(userRepository.existsByEmail(email)).thenReturn(false);
 
-        // --- ACT ---
-        User user = new User("TestUser", "test@example.com");
-        userService.registerUser(user);
+        User result = userService.registerUser(name, email);
 
-        // --- ASSERT ---
-        // Wurde gespeichert?
-        verify(userRepository).save(user);
+        assertNotNull(result);
+        assertEquals(name, result.getName());
+        assertEquals(email, result.getEmail());
+
+        verify(userRepository, times(1)).save(any(User.class));
     }
 
     @Test
-    void shouldThrowExceptionWhenEmailExists() {
-        // --- ARRANGE ---
-        String existingEmail = "busy@example.com";
+    void shouldThrowExceptionWhenEmailAlreadyExists() {
+        String email = "bereits@belegt.de";
+        when(userRepository.existsByEmail(email)).thenReturn(true);
 
-        when(userRepository.existsByEmail(existingEmail)).thenReturn(true);
-
-        // --- ACT & ASSERT ---
-        User user = new User("Bad Guy", existingEmail);
-
-        // Hier prüfen wir: "Wirft dieser Codeblock eine IllegalArgumentException?"
         assertThrows(IllegalArgumentException.class, () -> {
-            userService.registerUser(user);
+            userService.registerUser("Egal", email);
         });
 
-        // Zusatz: Wir können auch prüfen, dass save() NIEMALS aufgerufen wurde
-        verify(userRepository, never()).save(any());
+        verify(userRepository, never()).save(any(User.class));
     }
 }
