@@ -8,35 +8,34 @@ import persistence.entity.FriendshipJpaEntity;
 import persistence.mapper.FriendshipMapper;
 import persistence.repository.FriendshipJpaRepository;
 
-import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class FriendshipPersistenceAdapter implements FriendshipRepository {
 
     @Inject
-    FriendshipJpaRepository repository;
+    FriendshipJpaRepository friendshipJpaRepository;
 
     @Inject
-    FriendshipMapper mapper;
+    FriendshipMapper friendshipMapper;
 
     @Override
     public void save(Friendship friendship) {
-        repository.getEntityManager().merge(mapper.toEntity(friendship));
+        FriendshipJpaEntity entity = friendshipMapper.toEntity(friendship);
+        friendshipJpaRepository.getEntityManager().merge(entity);
     }
 
     @Override
-    public boolean existsByRequesterIdAndAddresseeId(UUID requesterId, UUID addresseeId) {
-        return repository.find("requesterId = ?1 and addresseeId = ?2", requesterId, addresseeId)
+    public Optional<Friendship> findById(UUID id) {
+        return friendshipJpaRepository.findByIdOptional(id)
+                .map(friendshipMapper::toDomain);
+    }
+
+    @Override
+    public boolean existsByRequesterAndAddressee(UUID requesterId, UUID addresseeId) {
+        return friendshipJpaRepository
+                .find("requesterId = ?1 and addresseeId = ?2", requesterId, addresseeId)
                 .count() > 0;
-    }
-
-    @Override
-    public List<Friendship> findAllByRequesterIdOrAddresseeId(UUID requesterId, UUID addresseeId) {
-        return repository.find("requesterId = ?1 or addresseeId = ?2", requesterId, addresseeId)
-                .stream()
-                .map(mapper::toDomain)
-                .collect(Collectors.toList());
     }
 }

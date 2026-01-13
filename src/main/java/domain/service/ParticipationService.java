@@ -5,17 +5,21 @@ import domain.model.ParticipationStatus;
 import domain.port.EventRepository;
 import domain.port.ParticipationRepository;
 import domain.port.UserRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 import java.util.Optional;
 import java.util.UUID;
 
+@ApplicationScoped
 public class ParticipationService {
 
     private final ParticipationRepository participationRepository;
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
 
-    // Konstruktor Injection für alle benötigten Ports
+    @Inject
     public ParticipationService(ParticipationRepository participationRepository,
                                 EventRepository eventRepository,
                                 UserRepository userRepository) {
@@ -24,14 +28,9 @@ public class ParticipationService {
         this.userRepository = userRepository;
     }
 
-    /**
-     * UC3: Register Participation
-     * Ermöglicht es einem User, an einem Event teilzunehmen oder den Status zu ändern.
-     */
-    public Participation updateParticipation(UUID userId, UUID eventId, ParticipationStatus newStatus) {
+    @Transactional
+    public Participation registerUserForEvent(UUID userId, UUID eventId, ParticipationStatus status) {
 
-        // 1. Validierung: Existieren User und Event?
-        // Das PDF verlangt explizit: "System validates that the referenced event exists"
         if (eventRepository.findById(eventId).isEmpty()) {
             throw new IllegalArgumentException("Event not found.");
         }
@@ -39,33 +38,27 @@ public class ParticipationService {
             throw new IllegalArgumentException("User not found.");
         }
 
-        // 2. Prüfen, ob bereits eine Teilnahme existiert
-        // Wir nutzen hier findById oder eine spezifische Suchmethode,
-        // idealerweise bräuchten wir im Repo eine Methode: findByUserIdAndEventId.
-        // Da wir aktuell nur 'existsByUserIdAndEventId' im Interface haben,
-        // müssen wir das Interface 'ParticipationRepository' gleich kurz erweitern,
-        // um das Objekt auch wirklich zu bekommen, nicht nur ein boolean.
-
         Optional<Participation> existingParticipation = participationRepository.findByUserIdAndEventId(userId, eventId);
 
         Participation participationToSave;
 
         if (existingParticipation.isPresent()) {
-            // Fall B: Update (Status ändern)
-            Participation oldParticipation = existingParticipation.get();
-
-            // Wir nutzen die "Wither"-Methode für Immutability -> erzeugt neues Objekt mit neuer Status
-            participationToSave = oldParticipation.withStatus(newStatus);
-
+            participationToSave = existingParticipation.get().withStatus(status);
         } else {
-            // Fall A: Neu anlegen
-            participationToSave = new Participation(userId, eventId, newStatus);
+            participationToSave = new Participation(userId, eventId, status);
         }
 
-        // 3. Persistieren
         participationRepository.save(participationToSave);
-
-        // 4. Rückgabe des aktuellen Stands
         return participationToSave;
+    }
+
+    public Participation getParticipationById(UUID id) {
+        return participationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Participation not found with id: " + id));
+    }
+
+    @Transactional
+    public void cancelParticipation(UUID id) {
+        participationRepository.delete(id);
     }
 }

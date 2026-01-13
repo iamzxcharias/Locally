@@ -8,10 +8,8 @@ import persistence.entity.ParticipationJpaEntity;
 import persistence.mapper.ParticipationMapper;
 import persistence.repository.ParticipationJpaRepository;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class ParticipationPersistenceAdapter implements ParticipationRepository {
@@ -36,27 +34,14 @@ public class ParticipationPersistenceAdapter implements ParticipationRepository 
 
     @Override
     public Optional<Participation> findByUserIdAndEventId(UUID userId, UUID eventId) {
-        // Nutzt Panache-Query: find("userId = ?1 and eventId = ?2", ...)
-        return participationJpaRepository.find("userId = ?1 and eventId = ?2", userId, eventId)
+        return participationJpaRepository
+                .find("userId = ?1 and eventId = ?2", userId, eventId)
                 .firstResultOptional()
                 .map(participationMapper::toDomain);
     }
 
     @Override
-    public boolean existsByUserIdAndEventId(UUID userId, UUID eventId) {
-        return participationJpaRepository.find("userId = ?1 and eventId = ?2", userId, eventId)
-                .count() > 0;
-    }
-
-    @Override
-    public List<Participation> findByEventId(UUID eventId) {
-        return participationJpaRepository.findByEventId(eventId).stream()
-                .map(participationMapper::toDomain)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public void delete(UUID userId, UUID eventId) {
-        participationJpaRepository.delete("userId = ?1 and eventId = ?2", userId, eventId);
+    public void delete(UUID id) {
+        participationJpaRepository.deleteById(id);
     }
 }

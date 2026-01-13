@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="" />
+    <list default="true" id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/port/ParticipationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/port/ParticipationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/service/ParticipationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/service/ParticipationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/adapter/FriendshipPersistenceAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/adapter/FriendshipPersistenceAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/adapter/ParticipationPersistenceAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/adapter/ParticipationPersistenceAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/domain/service/ParticipationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/domain/service/ParticipationServiceTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
