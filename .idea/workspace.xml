@@ -6,14 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/controller/FriendshipResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/controller/FriendshipResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/controller/ParticipationResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/controller/ParticipationResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/model/Participation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/model/Participation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/port/FriendshipRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/port/FriendshipRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/service/FriendshipService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/service/ParticipationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/service/ParticipationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/adapter/FriendshipPersistenceAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/adapter/FriendshipPersistenceAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/repository/FriendshipJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/repository/FriendshipJpaRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
