@@ -58,6 +58,18 @@ public class ParticipationService {
     }
 
     @Transactional
+    public Participation updateParticipationStatus(UUID id, ParticipationStatus newStatus) {
+        Participation participation = participationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Participation not found with id: " + id));
+
+        participation.setStatus(newStatus);
+
+        participationRepository.save(participation);
+
+        return participation;
+    }
+
+    @Transactional
     public void cancelParticipation(UUID id) {
         participationRepository.delete(id);
     }

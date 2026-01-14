@@ -8,8 +8,10 @@ import persistence.entity.FriendshipJpaEntity;
 import persistence.mapper.FriendshipMapper;
 import persistence.repository.FriendshipJpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class FriendshipPersistenceAdapter implements FriendshipRepository {
@@ -32,10 +34,28 @@ public class FriendshipPersistenceAdapter implements FriendshipRepository {
                 .map(friendshipMapper::toDomain);
     }
 
+    // FIX: Die Methode, die gefehlt hat
+    @Override
+    public boolean existsById(UUID id) {
+        return friendshipJpaRepository.findByIdOptional(id).isPresent();
+    }
+
+    // FIX: Die Lösch-Methode
+    @Override
+    public void delete(UUID id) {
+        friendshipJpaRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Friendship> findByUserId(UUID userId) {
+        return friendshipJpaRepository.findByUserId(userId).stream()
+                .map(friendshipMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public boolean existsByRequesterAndAddressee(UUID requesterId, UUID addresseeId) {
-        return friendshipJpaRepository
-                .find("requesterId = ?1 and addresseeId = ?2", requesterId, addresseeId)
-                .count() > 0;
+        // Nutzt die Panache-Logik, um zu prüfen ob eine Kombination existiert
+        return friendshipJpaRepository.count("requesterId = ?1 and addresseeId = ?2", requesterId, addresseeId) > 0;
     }
 }

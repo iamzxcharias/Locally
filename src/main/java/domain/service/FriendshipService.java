@@ -7,6 +7,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @ApplicationScoped
@@ -17,6 +18,16 @@ public class FriendshipService {
     @Inject
     public FriendshipService(FriendshipRepository friendshipRepository) {
         this.friendshipRepository = friendshipRepository;
+    }
+
+
+    public List<Friendship> getFriendshipsForUser(UUID userId) {
+        return friendshipRepository.findByUserId(userId);
+    }
+
+    public Friendship getFriendshipById(UUID id) {
+        return friendshipRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Friendship not found with id: " + id));
     }
 
 
@@ -47,5 +58,14 @@ public class FriendshipService {
         friendshipRepository.save(acceptedFriendship);
 
         return acceptedFriendship;
+    }
+
+    @Transactional
+    public void deleteFriendship(UUID id) {
+        // Wir prüfen erst, ob sie existiert, um eine saubere Fehlermeldung zu geben
+        if (!friendshipRepository.existsById(id)) {
+            throw new RuntimeException("Friendship not found with id: " + id);
+        }
+        friendshipRepository.delete(id);
     }
 }

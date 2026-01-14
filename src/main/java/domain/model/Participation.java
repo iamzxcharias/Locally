@@ -8,7 +8,7 @@ public class Participation {
     private final UUID id;
     private final UUID userId;
     private final UUID eventId;
-    private final ParticipationStatus status; // Jetzt Enum statt String!
+    private ParticipationStatus status; // Jetzt Enum statt String!
     private final LocalDateTime createdAt;
 
     // Konstruktor
@@ -54,4 +54,10 @@ public class Participation {
     public UUID getEventId() { return eventId; }
     public ParticipationStatus getStatus() { return status; }
     public LocalDateTime getCreatedAt() { return createdAt; }
+
+    //Setter
+    public void setStatus(ParticipationStatus status) {
+        this.status = status;
+    }
+
 }

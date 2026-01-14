@@ -10,12 +10,14 @@ import java.util.UUID;
 @ApplicationScoped
 public class FriendshipJpaRepository implements PanacheRepositoryBase<FriendshipJpaEntity, UUID> {
 
-    // Diese Methode hat im Test gefehlt:
+    public List<FriendshipJpaEntity> findByUserId(UUID userId) {
+        return list("requesterId = ?1 or addresseeId = ?1", userId);
+    }
+
     public List<FriendshipJpaEntity> findByRequesterId(UUID requesterId) {
         return list("requesterId", requesterId);
     }
 
-    // Kleiner Bonus: Die wirst du später sicher auch für den Empfänger brauchen
     public List<FriendshipJpaEntity> findByAddresseeId(UUID addresseeId) {
         return list("addresseeId", addresseeId);
     }
