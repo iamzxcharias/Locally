@@ -52,6 +52,19 @@ public class UserService {
     }
 
     @Transactional
+    public User updateUser(UUID id, String newName, String newEmail) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+
+        user.setName(newName);
+        user.setEmail(newEmail);
+
+        userRepository.save(user);
+
+        return user;
+    }
+
+    @Transactional
     public void deleteUser(UUID id) {
         userRepository.delete(id);
         log.info("User mit ID {} wurde gelöscht", id);

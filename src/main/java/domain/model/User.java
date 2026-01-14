@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 public class User {
 
     private final UUID id;
-    private final String name;
-    private final String email;
+    private String name;
+    private String email;
 
     // Einfache Email-Regex für die Domain-Validierung
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
@@ -33,6 +33,14 @@ public class User {
         if (email == null || !EMAIL_PATTERN.matcher(email).matches()) {
             throw new IllegalArgumentException("User email must be valid."); //
         }
+    }
+
+    // Setter
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     // Getter
