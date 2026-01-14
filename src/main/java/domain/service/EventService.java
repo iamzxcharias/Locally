@@ -41,6 +41,26 @@ public class EventService {
     }
 
     @Transactional
+    public Event updateEvent(UUID id, String title, String category, String description,
+                             LocalDateTime startsAt, String placeName,
+                             Double lat, Double lng) {
+        Event event = eventRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Event not found with id: " + id));
+
+        event.setTitle(title);
+        event.setCategory(category);
+        event.setDescription(description);
+        event.setStartsAt(startsAt);
+        event.setPlaceName(placeName);
+        event.setLat(lat);
+        event.setLng(lng);
+
+        eventRepository.save(event);
+
+        return event;
+    }
+
+    @Transactional
     public void deleteEvent(UUID id) {
         eventRepository.delete(id);
     }
