@@ -50,6 +50,22 @@ public class EventResource {
         return mapToResponse(event);
     }
 
+    @PUT
+    @Path("/{id}")
+    public Response updateEvent(@PathParam("id") UUID id, EventRequest request) {
+        Event updated = eventService.updateEvent(
+                id,
+                request.title,
+                request.category,
+                request.description,
+                request.startsAt,
+                request.placeName,
+                request.lat,
+                request.lng
+        );
+        return Response.ok(updated).build();
+    }
+
     @DELETE
     @Path("/{id}")
     public Response deleteEvent(@PathParam("id") UUID id) {
