@@ -1,3 +1,5 @@
+-- Don't change Data. They're needed for the Integration Tests.
+
 -- 1. USER (Tabelle: users)
 INSERT INTO users (id, name, email)
 VALUES ('11111111-1111-1111-1111-111111111111', 'Alice', 'alice@locally.de');
