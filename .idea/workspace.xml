@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +46,7 @@
     "JUnit.UserJpaRepositoryTest.executor": "Run",
     "JUnit.UserMapperTest.executor": "Run",
     "Maven.Locally [install].executor": "Run",
-    "git-widget-placeholder": "11-implement-rest-api-controller-adapter-for-crud",
+    "git-widget-placeholder": "12-integration-tests-for-api-level-crud",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
