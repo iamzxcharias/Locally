@@ -44,6 +44,13 @@ public class UserResource {
         return mapToResponse(user);
     }
 
+    @PUT
+    @Path("/{id}")
+    public Response updateUser(@PathParam("id") UUID id, UserRequest request) {
+        User updated = userService.updateUser(id, request.name, request.email);
+        return Response.ok(mapToResponse(updated)).build();
+    }
+
     @DELETE
     @Path("/{id}")
     public Response deleteUser(@PathParam("id") UUID id) {
