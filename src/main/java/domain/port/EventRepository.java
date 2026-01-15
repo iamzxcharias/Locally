@@ -4,6 +4,7 @@ import domain.model.Event;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.time.LocalDateTime;
 
 public interface EventRepository {
     void save(Event event);
@@ -14,4 +15,8 @@ public interface EventRepository {
     List<Event> findByCreatorId(UUID creatorId);
 
     void delete(UUID id);
+
+    List<Event> search(String q, String category, LocalDateTime from, LocalDateTime to, int page, int size);
+
+    long countSearch(String q, String category, LocalDateTime from, LocalDateTime to);
 }

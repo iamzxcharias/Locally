@@ -65,4 +65,12 @@ public class EventService {
     public void deleteEvent(UUID id) {
         eventRepository.delete(id);
     }
+
+    public List<Event> searchEvents(String q, String category, LocalDateTime from, LocalDateTime to, int page, int size) {
+    return eventRepository.search(q, category, from, to, page, size);
+    }
+    
+    public long countSearchEvents(String q, String category, LocalDateTime from, LocalDateTime to) {
+    return eventRepository.countSearch(q, category, from, to);
+    }
 }

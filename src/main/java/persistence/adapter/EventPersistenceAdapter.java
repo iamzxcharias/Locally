@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.time.LocalDateTime;
 
 @ApplicationScoped
 public class EventPersistenceAdapter implements EventRepository {
@@ -55,5 +56,17 @@ public class EventPersistenceAdapter implements EventRepository {
     @Override
     public void delete(UUID id) {
         eventJpaRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Event> search(String q, String category, LocalDateTime from, LocalDateTime to, int page, int size) {
+    return eventJpaRepository.search(q, category, from, to, page, size).stream()
+            .map(eventMapper::toDomain)
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    public long countSearch(String q, String category, LocalDateTime from, LocalDateTime to) {
+    return eventJpaRepository.countSearch(q, category, from, to);
     }
 }
