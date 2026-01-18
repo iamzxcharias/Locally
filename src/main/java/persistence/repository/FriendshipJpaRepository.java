@@ -26,7 +26,7 @@ public class FriendshipJpaRepository implements PanacheRepositoryBase<Friendship
 
     public List<FriendshipJpaEntity> searchForUser(UUID userId, FriendshipStatus status, UUID friendId, String friendQ, int page, int size) {
     QueryParts parts = buildQuery(userId, status, friendId, friendQ);
-        return find(parts.query + " order by createdAt desc, id asc", parts.params)
+        return find(parts.query + " order by f.createdAt desc, f.id asc", parts.params)
             .page(Page.of(page, size))
             .list();
     }
@@ -37,25 +37,25 @@ public class FriendshipJpaRepository implements PanacheRepositoryBase<Friendship
     }
 
     private QueryParts buildQuery(UUID userId, FriendshipStatus status, UUID friendId, String friendQ) {
-        StringBuilder q = new StringBuilder("1=1");
+        StringBuilder q = new StringBuilder("from FriendshipJpaEntity f where 1=1");
         Map<String, Object> p = new HashMap<>();
 
-        q.append(" and (requesterId = :userId or addresseeId = :userId)");
+        q.append(" and (f.requesterId = :userId or f.addresseeId = :userId)");
         p.put("userId", userId);
 
         if (status != null) {
-            q.append(" and status = :status");
+            q.append(" and f.status = :status");
             p.put("status", status);
         }
 
         if (friendId != null) {
-            q.append(" and ((requesterId = :userId and addresseeId = :friendId) or (addresseeId = :userId and requesterId = :friendId))");
+            q.append(" and ((f.requesterId = :userId and f.addresseeId = :friendId) or (f.addresseeId = :userId and f.requesterId = :friendId))");
             p.put("friendId", friendId);
         }
 
         if (friendQ != null && !friendQ.isBlank()) {
             q.append(" and exists (select 1 from UserJpaEntity u where " +
-                    "((requesterId = :userId and u.id = addresseeId) or (addresseeId = :userId and u.id = requesterId))" +
+                    "((f.requesterId = :userId and u.id = f.addresseeId) or (f.addresseeId = :userId and u.id = f.requesterId))" +
                     " and (lower(u.name) like :fq or lower(u.email) like :fq))");
             p.put("fq", "%" + friendQ.toLowerCase() + "%");
         }
