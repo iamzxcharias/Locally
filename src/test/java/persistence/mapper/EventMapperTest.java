@@ -22,7 +22,7 @@ class EventMapperTest {
 
         Event domainEvent = new Event(
                 id, "Tech Conference", "IT", "A great talk about Quarkus",
-                startsAt, "Würzburg Hub", 49.79, 9.93, creatorId
+                startsAt, "Würzburg Hub", 49.79, 9.93, creatorId, 3
         );
 
         EventJpaEntity entity = mapper.toEntity(domainEvent);
@@ -42,7 +42,7 @@ class EventMapperTest {
 
         EventJpaEntity entity = new EventJpaEntity(
                 id, "Outdoor Party", "Social", "Music and drinks",
-                startsAt, "Main River", 50.11, 8.68, creatorId
+                startsAt, "Main River", 50.11, 8.68, creatorId, 4
         );
 
         Event domainEvent = mapper.toDomain(entity);

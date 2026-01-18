@@ -45,7 +45,8 @@ public class ParticipationJpaRepositoryTest {
                 "Club",
                 Double.valueOf(48.0),
                 Double.valueOf(9.0),                           
-                userId
+                userId,
+                2
         );
         eventJpaRepository.persist(event);
 

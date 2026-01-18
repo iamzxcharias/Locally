@@ -39,7 +39,8 @@ public class EventJpaRepositoryTest {
                 "Musik",
                 Double.valueOf(49.7913),
                 Double.valueOf(9.9534),
-                creatorId
+                creatorId,
+                2
         );
 
         EventJpaEntity event2 = new EventJpaEntity(
@@ -51,7 +52,8 @@ public class EventJpaRepositoryTest {
                 "Shopping",
                 Double.valueOf(49.7944),
                 Double.valueOf(9.9292),
-                creatorId
+                creatorId,
+                5
         );
 
         eventJpaRepository.persist(event1);
