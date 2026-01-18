@@ -68,4 +68,12 @@ public class FriendshipService {
         }
         friendshipRepository.delete(id);
     }
+
+    public List<Friendship> searchFriendships(UUID userId, FriendshipStatus status, UUID friendId, String friendQ, int page, int size) {
+        return friendshipRepository.searchForUser(userId, status, friendId, friendQ, page, size);
+    }
+
+    public long countSearchFriendships(UUID userId, FriendshipStatus status, UUID friendId, String friendQ) {
+        return friendshipRepository.countSearchForUser(userId, status, friendId, friendQ);
+    }
 }

@@ -2,12 +2,14 @@ package api.controller;
 
 import api.dto.UserRequest;
 import api.dto.UserResponse;
+import api.dto.UserListResponse;
 import domain.model.User;
 import domain.service.UserService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.CacheControl;
 
 import java.util.List;
 import java.util.UUID;
@@ -60,5 +62,29 @@ public class UserResource {
 
     private UserResponse mapToResponse(User user) {
         return new UserResponse(user.getId(), user.getName(), user.getEmail());
+    }
+
+    @GET
+    @Path("/search")
+    public Response searchUsers(
+            @QueryParam("q") String q,
+            @DefaultValue("0") @QueryParam("page") int page,
+            @DefaultValue("20") @QueryParam("size") int size
+    ) {
+        if (page < 0) throw new BadRequestException("page must be >= 0");
+        if (size <= 0 || size > 50) throw new BadRequestException("size must be between 1 and 50");
+
+        List<UserResponse> items = userService.searchUsers(q, page, size).stream()
+                .map(this::mapToResponse)
+                .collect(Collectors.toList());
+
+        long total = userService.countSearchUsers(q);
+
+        UserListResponse body = new UserListResponse(items, page, size, total);
+
+        CacheControl cc = new CacheControl();
+        cc.setMaxAge(30);
+
+        return Response.ok(body).cacheControl(cc).build();
     }
 }

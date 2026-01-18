@@ -13,6 +13,7 @@ import jakarta.ws.rs.NotFoundException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.List;
 
 @ApplicationScoped
 public class ParticipationService {
@@ -56,6 +57,10 @@ public class ParticipationService {
         }
 
         participationRepository.save(participationToSave);
+        
+        int newCount = (int) participationRepository.countByEventId(eventId);
+        eventRepository.updateParticipantCount(eventId, newCount);
+
         return participationToSave;
     }
 
@@ -77,6 +82,23 @@ public class ParticipationService {
         if (participationRepository.findById(id).isEmpty()) {
             throw new NotFoundException("Participation not found with id: " + id);
         }
+        Participation participation = getParticipationById(id);
+        UUID eventId = participation.getEventId();
+
         participationRepository.delete(id);
+
+        Participation deleted = participation; // wenn du dir das Objekt vorher holst
+        eventId = deleted.getEventId();
+
+        int newCount = (int) participationRepository.countByEventId(eventId);
+        eventRepository.updateParticipantCount(eventId, newCount);
+    }
+
+    public List<Participation> searchParticipations(UUID userId, UUID eventId, ParticipationStatus status, int page, int size) {
+        return participationRepository.search(userId, eventId, status, page, size);
+    }
+
+    public long countSearchParticipations(UUID userId, UUID eventId, ParticipationStatus status) {
+        return participationRepository.countSearch(userId, eventId, status);
     }
 }

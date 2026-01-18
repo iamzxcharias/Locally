@@ -69,4 +69,12 @@ public class EventPersistenceAdapter implements EventRepository {
     public long countSearch(String q, String category, LocalDateTime from, LocalDateTime to) {
     return eventJpaRepository.countSearch(q, category, from, to);
     }
+
+    @Override
+    public void updateParticipantCount(UUID eventId, int participantCount) {
+        eventJpaRepository.findByIdOptional(eventId).ifPresent(entity -> {
+            entity.setParticipantCount(participantCount);
+            eventJpaRepository.getEntityManager().merge(entity);
+        });
+    }
 }

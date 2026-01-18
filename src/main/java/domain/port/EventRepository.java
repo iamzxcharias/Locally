@@ -19,4 +19,6 @@ public interface EventRepository {
     List<Event> search(String q, String category, LocalDateTime from, LocalDateTime to, int page, int size);
 
     long countSearch(String q, String category, LocalDateTime from, LocalDateTime to);
+
+    void updateParticipantCount(UUID eventId, int participantCount);
 }

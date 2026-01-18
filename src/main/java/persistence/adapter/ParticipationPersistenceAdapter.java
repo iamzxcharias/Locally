@@ -1,6 +1,7 @@
 package persistence.adapter;
 
 import domain.model.Participation;
+import domain.model.ParticipationStatus;
 import domain.port.ParticipationRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -10,6 +11,7 @@ import persistence.repository.ParticipationJpaRepository;
 
 import java.util.Optional;
 import java.util.UUID;
+import java.util.List;
 
 @ApplicationScoped
 public class ParticipationPersistenceAdapter implements ParticipationRepository {
@@ -43,5 +45,22 @@ public class ParticipationPersistenceAdapter implements ParticipationRepository 
     @Override
     public void delete(UUID id) {
         participationJpaRepository.deleteById(id);
+    }
+
+    @Override
+    public long countByEventId(UUID eventId) {
+        return participationJpaRepository.count("eventId", eventId);
+    }
+
+    @Override
+    public List<Participation> search(UUID userId, UUID eventId, ParticipationStatus status, int page, int size) {
+        return participationJpaRepository.search(userId, eventId, status, page, size).stream()
+                .map(participationMapper::toDomain)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+    @Override
+    public long countSearch(UUID userId, UUID eventId, ParticipationStatus status) {
+        return participationJpaRepository.countSearch(userId, eventId, status);
     }
 }

@@ -49,4 +49,16 @@ public class UserPersistenceAdapter implements UserRepository {
     public void delete(UUID id) {
         userJpaRepository.deleteById(id);
     }
+
+    @Override
+    public List<User> search(String q, int page, int size) {
+        return userJpaRepository.search(q, page, size).stream()
+            .map(userMapper::toDomain)
+            .collect(java.util.stream.Collectors.toList());
+    }
+
+    @Override
+    public long countSearch(String q) {
+        return userJpaRepository.countSearch(q);
+    }
 }

@@ -47,6 +47,14 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public List<User> searchUsers(String q, int page, int size) {
+        return userRepository.search(q, page, size);
+    }
+
+    public long countSearchUsers(String q) {
+        return userRepository.countSearch(q);
+    }
+
     public User getUserById(UUID id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("User with id " + id + " not found"));

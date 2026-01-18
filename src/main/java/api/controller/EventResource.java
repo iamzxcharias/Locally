@@ -122,7 +122,47 @@ public class EventResource {
                 event.getPlaceName(),
                 event.getLat(),
                 event.getLng(),
-                event.getCreatorId()
+                event.getCreatorId(),
+                event.getParticipantCount()
         );
     }
+
+    @GET
+    @Path("/discover")
+    public Response discoverEvents(
+        @QueryParam("q") String q,
+        @QueryParam("category") String category,
+        @QueryParam("from") String from,
+        @QueryParam("to") String to,
+        @DefaultValue("0") @QueryParam("page") int page,
+        @DefaultValue("20") @QueryParam("size") int size
+    ) {
+        if (page < 0) throw new BadRequestException("page must be >= 0");
+        if (size <= 0 || size > 50) throw new BadRequestException("size must be between 1 and 50");
+
+        LocalDateTime fromDt = parseDateTime(from);
+        LocalDateTime toDt = parseDateTime(to);
+
+        if (fromDt == null) {
+            fromDt = LocalDateTime.now();
+        }
+
+        if (fromDt != null && toDt != null && fromDt.isAfter(toDt)) {
+        throw new BadRequestException("from must be <= to");
+        }
+
+        List<EventResponse> items = eventService.searchEvents(q, category, fromDt, toDt, page, size).stream()
+            .map(this::mapToResponse)
+            .collect(Collectors.toList());
+
+        long total = eventService.countSearchEvents(q, category, fromDt, toDt);
+
+        EventListResponse body = new EventListResponse(items, page, size, total);
+
+        CacheControl cc = new CacheControl();
+        cc.setMaxAge(30);
+
+        return Response.ok(body).cacheControl(cc).build();
+    }
+
 }

@@ -34,6 +34,9 @@ public class EventJpaEntity {
     @Column(nullable = false)
     private UUID creatorId;
 
+    @Column(name = "participant_count", nullable = false)
+    private int participantCount;
+
     // --- Konstruktoren ---
 
     // WICHTIG: Der Standard-Konstruktor ohne Parameter für JPA/Hibernate
@@ -43,7 +46,7 @@ public class EventJpaEntity {
     // Dein öffentlicher Konstruktor für das Mapping
     public EventJpaEntity(UUID id, String title, String category, String description,
                           LocalDateTime startsAt, String placeName, Double lat,
-                          Double lng, UUID creatorId) {
+                          Double lng, UUID creatorId, int participantCount) {
         this.id = id;
         this.title = title;
         this.category = category;
@@ -53,6 +56,7 @@ public class EventJpaEntity {
         this.lat = lat;
         this.lng = lng;
         this.creatorId = creatorId;
+        this.participantCount = participantCount;
     }
 
     // --- Getter ---
@@ -65,6 +69,7 @@ public class EventJpaEntity {
     public Double getLat() { return lat; }
     public Double getLng() { return lng; }
     public UUID getCreatorId() { return creatorId; }
+    public int getParticipantCount() { return participantCount; }
 
     // --- Setter ---
     public void setId(UUID id) { this.id = id; }
@@ -76,4 +81,5 @@ public class EventJpaEntity {
     public void setLat(Double lat) { this.lat = lat; }
     public void setLng(Double lng) { this.lng = lng; }
     public void setCreatorId(UUID creatorId) { this.creatorId = creatorId; }
+    public void setParticipantCount(int participantCount) { this.participantCount = participantCount; }
 }

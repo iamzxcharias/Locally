@@ -13,8 +13,9 @@ public class Event {
     private double lat;
     private double lng;
     private UUID creatorId;
+    private int participantCount;
 
-    // 1. KONSTRUKTOR: Für neue Events (8 Parameter)
+    // 1. KONSTRUKTOR: Für neue Events (9 Parameter)
     // Wird in deinen IntegrationTests und im Service genutzt.
     public Event(String title, String category, String description,
                  LocalDateTime startsAt, String placeName, double lat,
@@ -28,13 +29,14 @@ public class Event {
         this.lat = lat;
         this.lng = lng;
         this.creatorId = creatorId;
+        this.participantCount = 0;
     }
 
-    // 2. KONSTRUKTOR: Für den EventMapper (9 Parameter)
+    // 2. KONSTRUKTOR: Für den EventMapper (10 Parameter)
     // Wird genutzt, um existierende Events aus der DB zu laden.
     public Event(UUID id, String title, String category, String description,
                  LocalDateTime startsAt, String placeName, double lat,
-                 double lng, UUID creatorId) {
+                 double lng, UUID creatorId, int participantCount) {
         this.id = id;
         this.title = title;
         this.category = category;
@@ -44,6 +46,7 @@ public class Event {
         this.lat = lat;
         this.lng = lng;
         this.creatorId = creatorId;
+        this.participantCount = participantCount;
     }
 
     // --- GETTER ---
@@ -56,6 +59,7 @@ public class Event {
     public double getLat() { return lat; }
     public double getLng() { return lng; }
     public UUID getCreatorId() { return creatorId; }
+    public int getParticipantCount() { return participantCount; }
 
     // --- SETTER ---
     public void setId(UUID id) { this.id = id; }
@@ -67,4 +71,5 @@ public class Event {
     public void setLat(double lat) { this.lat = lat; }
     public void setLng(double lng) { this.lng = lng; }
     public void setCreatorId(UUID creatorId) { this.creatorId = creatorId; }
+    public void setParticipantCount(int participantCount) { this.participantCount = participantCount; }
 }

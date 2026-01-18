@@ -13,9 +13,10 @@ public class EventResponse {
     public double lat;
     public double lng;
     public UUID creatorId;
+    public int participantCount;
 
     public EventResponse(UUID id, String title, String category, String description,
-                         LocalDateTime startsAt, String placeName, double lat, double lng, UUID creatorId) {
+                         LocalDateTime startsAt, String placeName, double lat, double lng, UUID creatorId, int participantCount) {
         this.id = id;
         this.title = title;
         this.category = category;
@@ -25,5 +26,6 @@ public class EventResponse {
         this.lat = lat;
         this.lng = lng;
         this.creatorId = creatorId;
+        this.participantCount = participantCount;
     }
 }

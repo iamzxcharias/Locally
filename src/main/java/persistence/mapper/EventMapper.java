@@ -17,7 +17,8 @@ public class EventMapper {
                 event.getPlaceName(),
                 event.getLat(),
                 event.getLng(),
-                event.getCreatorId()
+                event.getCreatorId(),
+                event.getParticipantCount()
         );
     }
 
@@ -31,7 +32,8 @@ public class EventMapper {
                 entity.getPlaceName(),
                 entity.getLat(),
                 entity.getLng(),
-                entity.getCreatorId()
+                entity.getCreatorId(),
+                entity.getParticipantCount()
         );
     }
 }

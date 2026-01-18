@@ -13,4 +13,7 @@ public interface UserRepository {
     List<User> findAll();
 
     void delete(UUID id);
+
+    List<User> search(String q, int page, int size);
+    long countSearch(String q);
 }

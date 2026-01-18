@@ -1,6 +1,7 @@
 package persistence.adapter;
 
 import domain.model.Friendship;
+import domain.model.FriendshipStatus;
 import domain.port.FriendshipRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -57,5 +58,17 @@ public class FriendshipPersistenceAdapter implements FriendshipRepository {
     public boolean existsByRequesterAndAddressee(UUID requesterId, UUID addresseeId) {
         // Nutzt die Panache-Logik, um zu prüfen ob eine Kombination existiert
         return friendshipJpaRepository.count("requesterId = ?1 and addresseeId = ?2", requesterId, addresseeId) > 0;
+    }
+
+    @Override
+    public List<Friendship> searchForUser(UUID userId, FriendshipStatus status, UUID friendId, String friendQ, int page, int size) {
+        return friendshipJpaRepository.searchForUser(userId, status, friendId, friendQ, page, size).stream()
+                .map(friendshipMapper::toDomain)
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+    @Override
+    public long countSearchForUser(UUID userId, FriendshipStatus status, UUID friendId, String friendQ) {
+        return friendshipJpaRepository.countSearchForUser(userId, status, friendId, friendQ);
     }
 }
