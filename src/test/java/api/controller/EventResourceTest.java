@@ -106,4 +106,30 @@ public class EventResourceTest {
                 .then()
                 .statusCode(404);
     }
+
+    @Test
+    @Order(5)
+    public void testCreateEventWithEmptyTitle_ShouldReturn400() {
+        // Ein JSON-Body mit einem leeren Titel
+        String invalidJsonBody = String.format("""
+            {
+              "title": "", 
+              "description": "Ein Test ohne Titel",
+              "category": "SOCIAL",
+              "startsAt": "2026-05-20T18:00:00",
+              "placeName": "Büro",
+              "lat": 49.0,
+              "lng": 10.0,
+              "creatorId": "%s"
+            }
+            """, ALICE_ID);
+
+        given()
+                .contentType(ContentType.JSON)
+                .body(invalidJsonBody)
+                .when()
+                .post("/events")
+                .then()
+                .statusCode(400); // Wir erwarten hier einen Bad Request (400) wegen @NotBlank
+    }
 }
