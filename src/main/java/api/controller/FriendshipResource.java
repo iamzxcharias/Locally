@@ -60,20 +60,29 @@ public class FriendshipResource {
     @Path("/user/{userId}/search")
     public Response searchMyFriendships(
             @PathParam("userId") UUID userId,
-            @QueryParam("status") FriendshipStatus status,
+            @QueryParam("status") String status,
             @QueryParam("friendId") UUID friendId,
             @QueryParam("friendQ") String friendQ,
             @DefaultValue("0") @QueryParam("page") int page,
             @DefaultValue("20") @QueryParam("size") int size
     ) {
+        FriendshipStatus statusEnum = null;
+        if (status != null && !status.isBlank()) {
+            try {
+                statusEnum = FriendshipStatus.valueOf(status);
+            } catch (IllegalArgumentException e) {
+                throw new BadRequestException("Invalid status: " + status);
+            }
+        }
+
         if (page < 0) throw new BadRequestException("page must be >= 0");
         if (size <= 0 || size > 50) throw new BadRequestException("size must be between 1 and 50");
 
-        List<FriendshipResponse> items = friendshipService.searchFriendships(userId, status, friendId, friendQ, page, size).stream()
+        List<FriendshipResponse> items = friendshipService.searchFriendships(userId, statusEnum, friendId, friendQ, page, size).stream()
                 .map(this::mapToResponse)
                 .collect(Collectors.toList());
 
-        long total = friendshipService.countSearchFriendships(userId, status, friendId, friendQ);
+        long total = friendshipService.countSearchFriendships(userId, statusEnum, friendId, friendQ);
 
         FriendshipListResponse body = new FriendshipListResponse(items, page, size, total);
 
