@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,9 +30,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="38TesntpMCzrpZbJcgjsm9QAIK2" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -44,43 +41,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.TestClass.executor": "Run",
-    "JUnit.EventJpaRepositoryTest.executor": "Run",
-    "JUnit.EventMapperTest.executor": "Run",
-    "JUnit.FriendshipJpaRepositoryTest.executor": "Run",
-    "JUnit.FriendshipMapperTest.executor": "Run",
-    "JUnit.ParticipationJpaRepositoryTest.executor": "Run",
-    "JUnit.ParticipationMapperTest.executor": "Run",
-    "JUnit.UserJpaRepositoryTest.executor": "Run",
-    "JUnit.UserMapperTest.executor": "Run",
-    "Maven.Locally [install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "feature/events-filtering-paging-caching",
-    "last_opened_file_path": "D:/lucas/Studium/Semester_5/Backend/Portfolio/Locally",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.TestClass.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EventJpaRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EventMapperTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FriendshipJpaRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FriendshipMapperTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParticipationJpaRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ParticipationMapperTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserJpaRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserMapperTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Locally [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/events-filtering-paging-caching&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/lucas/Studium/Semester_5/Backend/Portfolio/Locally&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Locally" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="Locally" />
       <option name="filePath" />
@@ -132,6 +123,7 @@
       <option name="presentableId" value="Default" />
       <updated>1768828197037</updated>
       <workItem from="1768828198387" duration="631000" />
+      <workItem from="1768829859677" duration="16000" />
     </task>
     <servers />
   </component>
