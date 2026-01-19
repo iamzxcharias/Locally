@@ -104,7 +104,7 @@ public class FriendshipSearchTest {
         // friendQ (name/email) -> matcht friendB
         given()
                 .pathParam("userId", me)
-                .queryParam("friendQ", token)
+                .queryParam("friendQ", "best_" + token)
                 .queryParam("page", 0)
                 .queryParam("size", 50)
         .when()
