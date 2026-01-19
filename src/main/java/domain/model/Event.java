@@ -20,6 +20,9 @@ public class Event {
     public Event(String title, String category, String description,
                  LocalDateTime startsAt, String placeName, double lat,
                  double lng, UUID creatorId) {
+
+        validate(title, startsAt, lat, lng, creatorId); // Validierung vor Zuweisung
+
         this.id = UUID.randomUUID();
         this.title = title;
         this.category = category;
@@ -37,6 +40,9 @@ public class Event {
     public Event(UUID id, String title, String category, String description,
                  LocalDateTime startsAt, String placeName, double lat,
                  double lng, UUID creatorId, int participantCount) {
+
+        validate(title, startsAt, lat, lng, creatorId); // Validierung vor Zuweisung
+
         this.id = id;
         this.title = title;
         this.category = category;
@@ -47,6 +53,24 @@ public class Event {
         this.lng = lng;
         this.creatorId = creatorId;
         this.participantCount = participantCount;
+    }
+
+    private void validate(String title, LocalDateTime startsAt, double lat, double lng, UUID creatorId) {
+        if (title == null || title.isBlank()) {
+            throw new IllegalArgumentException("Event title must not be empty.");
+        }
+        if (startsAt == null || startsAt.isBefore(LocalDateTime.now())) {
+            throw new IllegalArgumentException("Event startsAt must be in the future.");
+        }
+        if (lat < -90 || lat > 90) {
+            throw new IllegalArgumentException("Latitude must be between -90 and 90.");
+        }
+        if (lng < -180 || lng > 180) {
+            throw new IllegalArgumentException("Longitude must be between -180 and 180.");
+        }
+        if (creatorId == null) {
+            throw new IllegalArgumentException("Event must have a creator.");
+        }
     }
 
     // --- GETTER ---

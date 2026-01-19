@@ -1,0 +1,259 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"0a0f7a82-b075-4a5f-842b-e98881a0cab4\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/domain/service/ParticipationService.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/domain/service/ParticipationService.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/MockData.sql\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/MockData.sql\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/application.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/application.properties\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/api/controller/FriendshipResourceTest.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/java/api/controller/FriendshipResourceTest.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/domain/service/ParticipationServiceTest.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/java/domain/service/ParticipationServiceTest.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MavenRunner\">\r\n    <option name=\"delegateBuildToMaven\" value=\"true\" />\r\n    <option name=\"jreName\" value=\"21\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"ProjectErrors\" />\r\n  </component>\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.TestClass.executor\": \"Run\",\r\n    \"JUnit.EventJpaRepositoryTest.executor\": \"Run\",\r\n    \"JUnit.EventMapperTest.executor\": \"Run\",\r\n    \"JUnit.FriendshipJpaRepositoryTest.executor\": \"Run\",\r\n    \"JUnit.FriendshipMapperTest.executor\": \"Run\",\r\n    \"JUnit.ParticipationJpaRepositoryTest.executor\": \"Run\",\r\n    \"JUnit.ParticipationMapperTest.executor\": \"Run\",\r\n    \"JUnit.UserJpaRepositoryTest.executor\": \"Run\",\r\n    \"JUnit.UserMapperTest.executor\": \"Run\",\r\n    \"Maven.Locally [install].executor\": \"Run\",\r\n    \"git-widget-placeholder\": \"12-integration-tests-for-api-level-crud\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.15\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"run.code.analysis.last.selected.profile\": \"pProject Default\",\r\n    \"settings.editor.selected.configurable\": \"reference.settings.project.maven.runner\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\">\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"Locally\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"Locally\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <servers />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 145deac00eb09e1577aa2efd873c111db2563525)
++++ b/.idea/workspace.xml	(date 1768660933081)
+@@ -6,11 +6,6 @@
+   <component name="ChangeListManager">
+     <list default="true" id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/service/ParticipationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/service/ParticipationService.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/MockData.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/MockData.sql" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/java/api/controller/FriendshipResourceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/api/controller/FriendshipResourceTest.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/java/domain/service/ParticipationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/domain/service/ParticipationServiceTest.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -25,8 +20,29 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="6-first-use-case-implement-domain-layer" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
++  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
++  "lastFilter": {
++    "state": "OPEN",
++    "assignee": "basti-byte"
++  }
++}]]></component>
++  <component name="GithubPullRequestsUISettings"><![CDATA[{
++  "selectedUrlAndAccountId": {
++    "url": "https://github.com/iamzxcharias/Locally.git",
++    "accountId": "ef9134f2-2f3f-4efb-981c-ebf3b61f0c32"
++  }
++}]]></component>
++  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
++  <component name="KubernetesApiProvider"><![CDATA[{
++  "isMigrated": true
++}]]></component>
+   <component name="MavenRunner">
+     <option name="delegateBuildToMaven" value="true" />
+     <option name="jreName" value="21" />
+@@ -34,14 +50,25 @@
+   <component name="ProblemsViewState">
+     <option name="selectedTabId" value="ProjectErrors" />
+   </component>
++  <component name="ProjectColorInfo"><![CDATA[{
++  "associatedIndex": 3
++}]]></component>
++  <component name="ProjectId" id="38O9m1Z2MMhje7DYNMxrdh673xd" />
+   <component name="ProjectLevelVcsManager">
+     <ConfirmationsSetting value="1" id="Add" />
++  </component>
++  <component name="ProjectViewState">
++    <option name="hideEmptyMiddlePackages" value="true" />
++    <option name="showLibraryContents" value="true" />
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
+     "Application.TestClass.executor": "Run",
+     "JUnit.EventJpaRepositoryTest.executor": "Run",
+     "JUnit.EventMapperTest.executor": "Run",
++    "JUnit.EventMapperTest.shouldMapEntityToDomain.executor": "Run",
++    "JUnit.EventQueryTest.executor": "Run",
++    "JUnit.EventServiceTest.executor": "Debug",
+     "JUnit.FriendshipJpaRepositoryTest.executor": "Run",
+     "JUnit.FriendshipMapperTest.executor": "Run",
+     "JUnit.ParticipationJpaRepositoryTest.executor": "Run",
+@@ -49,29 +76,173 @@
+     "JUnit.UserJpaRepositoryTest.executor": "Run",
+     "JUnit.UserMapperTest.executor": "Run",
+     "Maven.Locally [install].executor": "Run",
+-    "git-widget-placeholder": "12-integration-tests-for-api-level-crud",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
++    "git-widget-placeholder": "feature/events-filtering-paging-caching",
++    "kotlin-language-version-configured": "true",
++    "node.js.detected.package.eslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
+     "project.structure.last.edited": "Modules",
+     "project.structure.proportion": "0.15",
+     "project.structure.side.proportion": "0.2",
+     "run.code.analysis.last.selected.profile": "pProject Default",
+-    "settings.editor.selected.configurable": "reference.settings.project.maven.runner"
++    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
++    "vue.rearranger.settings.migration": "true"
+   }
+ }]]></component>
+-  <component name="RunManager">
+-    <configuration default="true" type="JetRunConfigurationType">
++  <component name="RunManager" selected="JUnit.EventServiceTest">
++    <configuration name="EventMapperTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="Locally" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="persistence.mapper.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="persistence.mapper" />
++      <option name="MAIN_CLASS_NAME" value="persistence.mapper.EventMapperTest" />
++      <option name="TEST_OBJECT" value="class" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="EventMapperTest.shouldMapEntityToDomain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="Locally" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="persistence.mapper.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="persistence.mapper" />
++      <option name="MAIN_CLASS_NAME" value="persistence.mapper.EventMapperTest" />
++      <option name="METHOD_NAME" value="shouldMapEntityToDomain" />
++      <option name="TEST_OBJECT" value="method" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="EventQueryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="Locally" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="api.controller.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="api.controller" />
++      <option name="MAIN_CLASS_NAME" value="api.controller.EventQueryTest" />
++      <option name="TEST_OBJECT" value="class" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="EventServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="Locally" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="domain.service.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="domain.service" />
++      <option name="MAIN_CLASS_NAME" value="domain.service.EventServiceTest" />
++      <option name="TEST_OBJECT" value="class" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
++    <configuration name="Locally" type="QuarkusRunConfigurationType" factoryName="Quarkus" nameIsGenerated="true">
+       <module name="Locally" />
+-      <option name="filePath" />
+-      <method v="2" />
++      <QsMavenRunConfiguration>
++        <MavenSettings>
++          <option name="myGeneralSettings" />
++          <option name="myRunnerSettings" />
++          <option name="myRunnerParameters">
++            <MavenRunnerParameters>
++              <option name="cmdOptions" />
++              <option name="profiles">
++                <set />
++              </option>
++              <option name="goals">
++                <list>
++                  <option value="quarkus:dev" />
++                </list>
++              </option>
++              <option name="multimoduleDir" />
++              <option name="pomFileName" value="pom.xml" />
++              <option name="profilesMap">
++                <map />
++              </option>
++              <option name="projectsCmdOptionValues">
++                <list />
++              </option>
++              <option name="resolveToWorkspace" value="false" />
++              <option name="workingDirPath" value="$PROJECT_DIR$" />
++            </MavenRunnerParameters>
++          </option>
++        </MavenSettings>
++        <targetMavenLocalRepo />
++        <emulateTerminal>false</emulateTerminal>
++        <profile>dev</profile>
++      </QsMavenRunConfiguration>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
+     </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="JUnit.EventServiceTest" />
++        <item itemvalue="JUnit.EventMapperTest.shouldMapEntityToDomain" />
++        <item itemvalue="JUnit.EventQueryTest" />
++        <item itemvalue="JUnit.EventMapperTest" />
++      </list>
++    </recent_temporary>
++  </component>
++  <component name="SharedIndexes">
++    <attachedChunks>
++      <set>
++        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28238.7" />
++        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-IU-252.28238.7" />
++      </set>
++    </attachedChunks>
+   </component>
+   <component name="TaskManager">
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="" />
++      <created>1768659913596</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1768659913596</updated>
++      <workItem from="1768659917901" duration="991000" />
++    </task>
+     <servers />
++  </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <line-breakpoint enabled="true" type="java-line">
++          <url>file://$PROJECT_DIR$/src/test/java/persistence/mapper/EventMapperTest.java</url>
++          <line>36</line>
++          <option name="timeStamp" value="1" />
++        </line-breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />

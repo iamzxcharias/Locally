@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="" />
+    <list default="true" id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/model/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/api/controller/EventDiscoverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/api/controller/EventDiscoverTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/api/controller/EventQueryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/api/controller/EventQueryTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,11 +77,6 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Locally" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
     <configuration name="Locally" type="QuarkusRunConfigurationType" factoryName="Quarkus" nameIsGenerated="true">
       <module name="Locally" />
       <QsMavenRunConfiguration>
@@ -94,6 +94,7 @@
                   <option value="quarkus:dev" />
                 </list>
               </option>
+              <option name="multimoduleDir" />
               <option name="pomFileName" value="pom.xml" />
               <option name="profilesMap">
                 <map />
@@ -108,6 +109,7 @@
         </MavenSettings>
         <targetMavenLocalRepo />
         <emulateTerminal>false</emulateTerminal>
+        <profile>dev</profile>
       </QsMavenRunConfiguration>
       <method v="2">
         <option name="Make" enabled="true" />
