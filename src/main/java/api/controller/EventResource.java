@@ -6,6 +6,7 @@ import api.dto.EventResponse;
 import domain.model.Event;
 import domain.service.EventService;
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.CacheControl;
 import jakarta.ws.rs.core.MediaType;
@@ -26,7 +27,7 @@ public class EventResource {
     EventService eventService;
 
     @POST
-    public Response createEvent(EventRequest request) {
+    public Response createEvent(@Valid EventRequest request) {
         Event event = eventService.createEvent(
                 request.title,
                 request.category,
