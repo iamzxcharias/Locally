@@ -26,6 +26,10 @@ public class EventService {
                              LocalDateTime startsAt, String placeName,
                              Double lat, Double lng, UUID creatorId) {
 
+        if (title == null || title.isBlank()) {
+            throw new IllegalArgumentException("Event title must not be empty");
+        }
+
         Event newEvent = new Event(title, category, description, startsAt, placeName, lat, lng, creatorId);
         eventRepository.save(newEvent);
         return newEvent;
