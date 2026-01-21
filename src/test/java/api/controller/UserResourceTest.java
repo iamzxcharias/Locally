@@ -7,21 +7,19 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import java.util.UUID;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 @QuarkusTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class) // Damit wir die CRUD-Reihenfolge einhalten
-public class UserResourceTest {
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+class UserResourceTest {
 
-    static String userId; // Wir speichern die ID für nachfolgende Tests
+    private static String userId;
 
     @Test
     @Order(1)
-    public void testCreateUser() {
+    void testCreateUser() {
         String jsonBody = """
                 {
                   "name": "Test User",
@@ -38,13 +36,12 @@ public class UserResourceTest {
                 .statusCode(201)
                 .body("id", notNullValue())
                 .body("name", is("Test User"))
-                .extract()
-                .path("id");
+                .extract().path("id");
     }
 
     @Test
     @Order(2)
-    public void testGetUser() {
+    void testGetUser() {
         given()
                 .pathParam("id", userId)
                 .when()
@@ -57,7 +54,7 @@ public class UserResourceTest {
 
     @Test
     @Order(3)
-    public void testUpdateUser() {
+    void testUpdateUser() {
         String updatedJson = """
                 {
                   "name": "Updated Name",
@@ -78,7 +75,7 @@ public class UserResourceTest {
 
     @Test
     @Order(4)
-    public void testDeleteUser() {
+    void testDeleteUser() {
         given()
                 .pathParam("id", userId)
                 .when()
@@ -86,12 +83,11 @@ public class UserResourceTest {
                 .then()
                 .statusCode(204);
 
-        // Check if really gone
         given()
                 .pathParam("id", userId)
                 .when()
                 .get("/users/{id}")
                 .then()
-                .statusCode(404); // Oder 500/204, je nachdem wie dein Service Fehler wirft
+                .statusCode(404);
     }
 }
