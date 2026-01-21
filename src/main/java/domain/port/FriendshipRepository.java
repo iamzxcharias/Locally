@@ -18,4 +18,6 @@ public interface FriendshipRepository {
     
     List<Friendship> searchForUser(UUID userId, FriendshipStatus status, UUID friendId, String friendQ, int page, int size);
     long countSearchForUser(UUID userId, FriendshipStatus status, UUID friendId, String friendQ);
+
+    boolean areFriends(UUID userA, UUID userB);
 }

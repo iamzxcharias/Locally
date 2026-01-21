@@ -3,6 +3,7 @@ package domain.service;
 import domain.model.Participation;
 import domain.model.ParticipationStatus;
 import domain.port.EventRepository;
+import domain.port.FriendshipRepository;
 import domain.port.ParticipationRepository;
 import domain.port.UserRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -18,6 +19,7 @@ import java.util.List;
 @ApplicationScoped
 public class ParticipationService {
 
+    private final FriendshipRepository friendshipRepository;
     private final ParticipationRepository participationRepository;
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
@@ -25,10 +27,13 @@ public class ParticipationService {
     @Inject
     public ParticipationService(ParticipationRepository participationRepository,
                                 EventRepository eventRepository,
-                                UserRepository userRepository) {
+                                UserRepository userRepository,
+                                FriendshipRepository friendshipRepository)
+    {
         this.participationRepository = participationRepository;
         this.eventRepository = eventRepository;
         this.userRepository = userRepository;
+        this.friendshipRepository = friendshipRepository;
     }
 
     @Transactional
@@ -100,5 +105,30 @@ public class ParticipationService {
 
     public long countSearchParticipations(UUID userId, UUID eventId, ParticipationStatus status) {
         return participationRepository.countSearch(userId, eventId, status);
+    }
+
+    @Transactional
+    public void inviteFriend(UUID currentUserId, UUID friendId, UUID eventId) {
+
+        if (!friendshipRepository.areFriends(currentUserId, friendId)) {
+            throw new IllegalArgumentException("Du kannst nur bestätigte Freunde einladen.");
+        }
+
+        if (eventRepository.findById(eventId).isEmpty()) {
+            throw new NotFoundException("Event nicht gefunden.");
+        }
+
+        Optional<Participation> existing = participationRepository.findByUserIdAndEventId(friendId, eventId);
+        if (existing.isPresent()) {
+            throw new IllegalStateException("User hat bereits einen Status für dieses Event.");
+        }
+
+        Participation invitation = new Participation(
+                UUID.randomUUID(),
+                friendId,
+                eventId,
+                ParticipationStatus.INVITED,
+                LocalDateTime.now()
+        );
     }
 }

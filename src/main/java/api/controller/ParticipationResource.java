@@ -11,6 +11,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.CacheControl;
+import api.dto.InvitationRequest;
 
 import java.util.UUID;
 import java.util.List;
@@ -93,5 +94,23 @@ public class ParticipationResource {
         cc.setMaxAge(30);
 
         return Response.ok(body).cacheControl(cc).build();
+    }
+    @POST
+    @Path("/invite")
+    public Response inviteUser(InvitationRequest request) {
+        // TODO: Im echten Betrieb ID aus SecurityContext (JWT) holen.
+        // Für die Aufgabe nutzen wir Alice aus den Testdaten:
+        UUID currentUserId = UUID.fromString("11111111-1111-1111-1111-111111111111");
+
+        try {
+            participationService.inviteFriend(currentUserId, request.targetUserId, request.eventId);
+            return Response.status(Response.Status.CREATED).build();
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            // 400 Bad Request bei Logikfehlern (kein Freund / schon dabei)
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        } catch (NotFoundException e) {
+            // 404 Not Found wenn Event nicht existiert
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
     }
 }
