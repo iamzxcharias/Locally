@@ -4,7 +4,7 @@ import domain.model.User;
 import domain.port.UserRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional; // Neu für Datenbank-Schreibrechte
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,20 +23,14 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    /**
-     * Registriert einen neuen User
-     * @Transactional stellt sicher, dass der User sicher in der DB landet.
-     */
     @Transactional
     public User registerUser(String name, String email) {
-        // Keine doppelten E-Mails
         if (userRepository.existsByEmail(email)) {
             log.warn("Registrierung fehlgeschlagen: Email {} existiert bereits", email);
             throw new IllegalArgumentException("Mail Address already exists");
         }
 
         User user = new User(name, email);
-
         userRepository.save(user);
 
         log.info("User erfolgreich registriert: {} mit ID {}", name, user.getId());
@@ -62,14 +56,12 @@ public class UserService {
 
     @Transactional
     public User updateUser(UUID id, String newName, String newEmail) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+        User user = getUserById(id);
 
         user.setName(newName);
         user.setEmail(newEmail);
 
         userRepository.save(user);
-
         return user;
     }
 
