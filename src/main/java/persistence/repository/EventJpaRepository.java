@@ -1,30 +1,30 @@
 package persistence.repository;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
-import jakarta.enterprise.context.ApplicationScoped;
 import io.quarkus.panache.common.Page;
+import jakarta.enterprise.context.ApplicationScoped;
 import persistence.entity.EventJpaEntity;
-import java.util.UUID;
-import java.util.List;
-import java.util.Map;
+
 import java.time.LocalDateTime;
-import java.util.HashMap;
+import java.util.*;
 
 @ApplicationScoped
 public class EventJpaRepository implements PanacheRepositoryBase<EventJpaEntity, UUID> {
+
     public List<EventJpaEntity> findByCreatorId(UUID creatorId) {
         return list("creatorId", creatorId);
     }
- public List<EventJpaEntity> search(String q, String category, LocalDateTime from, LocalDateTime to, int page, int size) {
+
+    public List<EventJpaEntity> search(String q, String category, LocalDateTime from, LocalDateTime to, int page, int size) {
         QueryParts parts = buildQuery(q, category, from, to);
-        return find(parts.query + " order by startsAt asc", parts.params)
+        return find(parts.query() + " order by startsAt asc", parts.params())
                 .page(Page.of(page, size))
                 .list();
     }
 
     public long countSearch(String q, String category, LocalDateTime from, LocalDateTime to) {
         QueryParts parts = buildQuery(q, category, from, to);
-        return find(parts.query, parts.params).count();
+        return find(parts.query(), parts.params()).count();
     }
 
     private QueryParts buildQuery(String q, String category, LocalDateTime from, LocalDateTime to) {
@@ -54,13 +54,5 @@ public class EventJpaRepository implements PanacheRepositoryBase<EventJpaEntity,
         return new QueryParts(query.toString(), params);
     }
 
-    private static final class QueryParts {
-        final String query;
-        final Map<String, Object> params;
-
-        QueryParts(String query, Map<String, Object> params) {
-            this.query = query;
-            this.params = params;
-        }
-    }
+    private record QueryParts(String query, Map<String, Object> params) { }
 }
