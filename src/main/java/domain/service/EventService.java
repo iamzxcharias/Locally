@@ -25,16 +25,10 @@ public class EventService {
     public Event createEvent(String title, String category, String description,
                              LocalDateTime startsAt, String placeName,
                              Double lat, Double lng, UUID creatorId) {
-
-        if (title == null || title.isBlank()) {
-            throw new IllegalArgumentException("Event title must not be empty");
-        }
-
         Event newEvent = new Event(title, category, description, startsAt, placeName, lat, lng, creatorId);
         eventRepository.save(newEvent);
         return newEvent;
     }
-
 
     public List<Event> getAllEvents() {
         return eventRepository.findAll();
@@ -49,8 +43,7 @@ public class EventService {
     public Event updateEvent(UUID id, String title, String category, String description,
                              LocalDateTime startsAt, String placeName,
                              Double lat, Double lng) {
-        Event event = eventRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Event not found with id: " + id));
+        Event event = getEventById(id);
 
         event.setTitle(title);
         event.setCategory(category);
@@ -61,7 +54,6 @@ public class EventService {
         event.setLng(lng);
 
         eventRepository.save(event);
-
         return event;
     }
 
@@ -71,10 +63,10 @@ public class EventService {
     }
 
     public List<Event> searchEvents(String q, String category, LocalDateTime from, LocalDateTime to, int page, int size) {
-    return eventRepository.search(q, category, from, to, page, size);
+        return eventRepository.search(q, category, from, to, page, size);
     }
-    
+
     public long countSearchEvents(String q, String category, LocalDateTime from, LocalDateTime to) {
-    return eventRepository.countSearch(q, category, from, to);
+        return eventRepository.countSearch(q, category, from, to);
     }
 }
