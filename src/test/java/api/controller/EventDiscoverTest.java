@@ -42,7 +42,7 @@ public class EventDiscoverTest {
         String token = "discover_" + System.nanoTime();
         String category = "DISC_" + token;
 
-        createEvent("PAST " + token, category, "2000-01-01T00:00:00");
+        //createEvent("PAST " + token, category, "2000-01-01T00:00:00"); auskommentiert, da es sonst mit der neu euíngeführten validation kollidiert
         createEvent("FUTURE " + token, category, "2999-01-01T00:00:00");
 
         given()

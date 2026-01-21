@@ -1,93 +1,67 @@
-# Locally - Backend Architektur Dokumentation
+# Locally - Backend Dokumentation
 
-Dieses Projekt basiert auf einer hexagonalen Architektur (Ports and Adapters) unter Verwendung von Quarkus. Diese Struktur stellt sicher, dass die Geschäftslogik strikt von technischen Infrastruktur-Details getrennt bleibt.
+Locally ist eine Plattform zum Entdecken und Teilen kleiner Community-Events in der Nachbarschaft, die auf einer einfachen, kartenbasierten Schnittstelle basiert. Das Backend stellt eine REST-API bereit, um Nutzer, Veranstaltungen, Teilnahmen und soziale Interaktionen zu verwalten.
 
-## Projektstruktur
+## Architektur
 
-Die Verzeichnisstruktur folgt der Aufteilung in Domain, API und Persistence:
+Das Projekt implementiert eine hexagonale Architektur (Ports and Adapters), um eine strikte Trennung zwischen der Geschäftslogik und der technischen Infrastruktur zu gewährleisten.
 
-```text
-project-root/
-├── .gitignore
-├── pom.xml                              <-- Maven Konfigurationsdatei 
-├── README.md                            <-- Startanleitung, Testhinweise 
-├── Dockerfile                           <-- Container-Bereitstellung
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │    ├── domain/                 <-- 1. DOMAIN (CORE / BUSINESS LOGIC) 
-│   │   │    │   ├── model/              <-- Entitäten, Value Objects (z.B. User, Event)
-│   │   │    │   ├── service/            <-- Business Logik / Use Cases
-│   │   │    │   └── port/               <-- Java-Interfaces (Inbound & Outbound Ports)
-│   │   │    │
-│   │   │    ├── api/                    <-- 2. API (ADAPTER / ENTRY POINT) 
-│   │   │    │   ├── controller/         <-- REST-Controller
-│   │   │    │   └── dto/                <-- Data Transfer Objects (Request/Response)
-│   │   │    │
-│   │   │    └── persistence/            <-- 3. PERSISTENCE (ADAPTER / DATA INFRASTRUCTURE) 
-│   │   │        ├── adapter/            <-- Implementiert Outbound Ports (Domain-Interfaces)
-│   │   │        ├── entity/             <-- JPA-Entities (Datenbank-Mapping)
-│   │   │        ├── mapper/             <-- Mapping-Logik (Übersetzung Entity <-> Domain)
-│   │   │        └── repository/         <-- Data Access Layer (Panache/Hibernate)
-│   │   │
-│   │   └── resources/                   
-│   │       └── application.properties   <-- Konfiguration (DB, Ports, Profile)
-│   │
-│   └── test/                            <-- Test-Suiten
-│       └── java/
-│            ├── domain/                 <-- Unit Tests für die Geschäftslogik
-│            │   └── service/
-│            │
-│            ├── api/                    <-- Integrationstests der REST-Endpunkte
-│            │   └── controller/
-│            │
-│            └── persistence/            <-- Tests der Dateninfrastruktur
-│                ├── mapper/             <-- Unit Tests für Mapping-Korrektheit
-│                └── repository/         <-- Integrationstests (DB-Zugriff)
 
-```
+### Verzeichnisstruktur
+* domain: Enthält den Kern der Anwendung inklusive der Geschäftsmodelle, Services und Schnittstellen (Ports).
+* api: Fungiert als Inbound-Adapter und stellt REST-Controller sowie DTOs für die Kommunikation mit dem Client bereit.
+* persistence: Fungiert als Outbound-Adapter und beinhaltet das Datenbank-Mapping, Repositories und Mapper zur Übersetzung zwischen technischer Entity und fachlichem Modell.
 
-## Schichtentrennung und Mapping
+## Funktionsumfang
 
-Ein zentrales Merkmal dieser Architektur ist die Verwendung von **Mappern** innerhalb der Persistence-Schicht.
+Das System deckt folgende Anwendungsfälle ab:
+* Event-Management (UC1): Erstellung und Verwaltung von Events inklusive Validierung von Titel, Datum und Geodaten.
+* Event-Suche (UC2): Filtern von Veranstaltungen nach Kategorien, Zeiträumen oder Suchbegriffen mit Unterstützung für Geospatial-Daten.
+* Teilnahme-System (UC3): Möglichkeit für Nutzer, ihr Interesse oder ihre Teilnahme an Events zu signalisieren.
+* Soziale Funktionen (UC4 & UC5): Einladen von Freunden zu Events und Einsehen der Aktivitäten von vernetzten Nutzern.
 
-* **Zweck:** Mapper dienen als Dolmetscher zwischen den JPA-Entities (technische Datenbank-Repräsentation) und den Domain-Modellen (fachliche Repräsentation).
-* **Vorteil:** Änderungen am Datenbankschema wirken sich nicht direkt auf den Core aus. Die Business-Logik bleibt "sauber" und frei von Persistenz-Annotationen.
-* **Immutability:** Die Domain-Modelle verwenden finale Felder. Mapper nutzen spezialisierte Konstruktoren, um Objekte beim Laden aus der Datenbank wiederherzustellen, ohne deren Kapselung zu verletzen.
+## Datenintegrität
 
----
-
-## Teststrategie
-
-Das Projekt nutzt einen differenzierten Testansatz:
-
-### Unit Tests
-
-* **Domain Services:** Testen der Geschäftsregeln ohne Abhängigkeiten.
-* **Mapper Tests:** Stellen sicher, dass Felder (insbesondere bei vielen Parametern wie beim Event) korrekt zugewiesen werden und Enums richtig übersetzt werden.
-
-### Integration Tests
-
-* **Persistence Layer:** Verwendung von `@QuarkusTest` zur Verifizierung der Repositories und Datenbank-Abfragen gegen eine Test-Datenbank.
-* **API Layer:** End-to-End Tests der REST-Schnittstellen mit REST-assured.
-
----
+Die Geschäftsregeln werden direkt im Domain-Modell erzwungen, um einen konsistenten Systemzustand sicherzustellen:
+* Events müssen einen Titel und einen Ersteller besitzen.
+* Das Startdatum muss zum Zeitpunkt der Erstellung in der Zukunft liegen.
+* Geographische Koordinaten müssen in den validen Bereichen für Breitengrad (-90 bis 90) und Längengrad (-180 bis 180) liegen.
 
 ## Starten des Projekts
 
-1. **Entwicklungsmodus:**
-```bash
+### Voraussetzungen
+* Installiertes Java 21.
+* Maven.
+
+### Ausführung
+Um das Projekt im Entwicklungsmodus zu starten (inklusive Hot-Reload), nutzen Sie folgenden Befehl im Hauptverzeichnis:
+
+```text
+mvn quarkus:dev
+```
+
+Alternativ über den Wrapper:
+
+```text
 ./mvnw quarkus:dev
-
 ```
 
+## Testen
 
-2. **Tests ausführen:**
-```bash
-mvn test
+Das Projekt umfasst Unit Tests für die Geschäftslogik sowie Integrationstests für die REST-Schnittstellen und die Persistenzschicht.
 
+Um alle Tests gesammelt auszuführen und das Projekt vorher zu bereinigen, verwenden Sie:
+
+```text
+mvn clean test
 ```
 
+## API-Übersicht
 
-
----
+| Endpunkt | Methode | Beschreibung |
+| :--- | :--- | :--- |
+| /events | GET | Abrufen und Filtern von Veranstaltungen. |
+| /events | POST | Erstellen eines neuen Events. |
+| /users | POST | Registrierung neuer Nutzer. |
+| /participations | POST | Registrierung oder Änderung eines Teilnahmestatus. |
+| /friendships | POST | Erstellen einer neuen Freundschaftsbeziehung. |

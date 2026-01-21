@@ -46,9 +46,9 @@ public class EventQueryTest {
 
     @Test
     void filterByCategory_shouldReturnOnlyThatCategory() {
-        createEvent("Filter A1", "FILTER_CAT", null, "2026-01-10T10:00:00");
-        createEvent("Filter A2", "FILTER_CAT", "desc", "2026-01-11T10:00:00");
-        createEvent("Filter B1", "OTHER_CAT", "desc", "2026-01-12T10:00:00");
+        createEvent("Filter A1", "FILTER_CAT", null, "2029-10-10T10:00:00");
+        createEvent("Filter A2", "FILTER_CAT", "desc", "2029-10-11T10:00:00");
+        createEvent("Filter B1", "OTHER_CAT", "desc", "2029-10-12T10:00:00");
 
         given()
                 .queryParam("category", "FILTER_CAT")
@@ -64,8 +64,8 @@ public class EventQueryTest {
 
     @Test
     void paging_shouldReturnDifferentItemsOnDifferentPages() {
-        createEvent("Page 1", "PAGING_CAT", "desc", "2026-02-10T10:00:00");
-        createEvent("Page 2", "PAGING_CAT", "desc", "2026-02-11T10:00:00");
+        createEvent("Page 1", "PAGING_CAT", "desc", "2029-02-10T10:00:00");
+        createEvent("Page 2", "PAGING_CAT", "desc", "2029-02-11T10:00:00");
 
         String idPage0 =
                 given()
@@ -116,7 +116,7 @@ public class EventQueryTest {
 
     @Test
     void qSearch_shouldNotCrashWhenDescriptionIsNull() {
-        createEvent("SearchTitle", "SEARCH_CAT", null, "2026-03-10T10:00:00");
+        createEvent("SearchTitle", "SEARCH_CAT", null, "2029-03-10T10:00:00");
 
         given()
                 .queryParam("q", "search")
