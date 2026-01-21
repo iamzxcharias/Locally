@@ -1,19 +1,14 @@
 package api.controller;
 
-import api.dto.ParticipationRequest;
-import api.dto.ParticipationResponse;
-import api.dto.ParticipationListResponse;
-import domain.model.Participation;
+import api.dto.*;
+import domain.model.*;
 import domain.service.ParticipationService;
-import domain.model.ParticipationStatus;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.CacheControl;
+import jakarta.ws.rs.core.*;
 
-import java.util.UUID;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Path("/participations")
@@ -26,30 +21,24 @@ public class ParticipationResource {
 
     @POST
     public Response registerForEvent(ParticipationRequest request) {
-        Participation participation = participationService.registerUserForEvent(
+        Participation p = participationService.registerUserForEvent(
                 request.userId,
                 request.eventId,
                 request.status
         );
-
-        return Response.status(Response.Status.CREATED)
-                .entity(mapToResponse(participation))
-                .build();
+        return Response.status(Response.Status.CREATED).entity(mapToResponse(p)).build();
     }
 
     @GET
     @Path("/{id}")
     public ParticipationResponse getParticipation(@PathParam("id") UUID id) {
-        Participation p = participationService.getParticipationById(id);
-        return mapToResponse(p);
+        return mapToResponse(participationService.getParticipationById(id));
     }
 
     @PATCH
     @Path("/{id}")
     public ParticipationResponse updateStatus(@PathParam("id") UUID id, ParticipationRequest request) {
-        // Jackson wandelt das JSON-Feld "status" automatisch in das Enum um
-        Participation updated = participationService.updateParticipationStatus(id, request.status);
-        return mapToResponse(updated);
+        return mapToResponse(participationService.updateParticipationStatus(id, request.status));
     }
 
     @DELETE
@@ -57,16 +46,6 @@ public class ParticipationResource {
     public Response cancelParticipation(@PathParam("id") UUID id) {
         participationService.cancelParticipation(id);
         return Response.noContent().build();
-    }
-
-    private ParticipationResponse mapToResponse(Participation p) {
-        return new ParticipationResponse(
-                p.getId(),
-                p.getUserId(),
-                p.getEventId(),
-                p.getStatus(),
-                p.getCreatedAt()
-        );
     }
 
     @GET
@@ -78,20 +57,33 @@ public class ParticipationResource {
             @DefaultValue("0") @QueryParam("page") int page,
             @DefaultValue("20") @QueryParam("size") int size
     ) {
-        if (page < 0) throw new BadRequestException("page must be >= 0");
-        if (size <= 0 || size > 50) throw new BadRequestException("size must be between 1 and 50");
+        validatePaging(page, size);
 
         List<ParticipationResponse> items = participationService.searchParticipations(userId, eventId, status, page, size).stream()
                 .map(this::mapToResponse)
                 .collect(Collectors.toList());
 
         long total = participationService.countSearchParticipations(userId, eventId, status);
-
         ParticipationListResponse body = new ParticipationListResponse(items, page, size, total);
 
         CacheControl cc = new CacheControl();
         cc.setMaxAge(30);
 
         return Response.ok(body).cacheControl(cc).build();
+    }
+
+    private void validatePaging(int page, int size) {
+        if (page < 0) throw new BadRequestException("page must be >= 0");
+        if (size <= 0 || size > 50) throw new BadRequestException("size must be between 1 and 50");
+    }
+
+    private ParticipationResponse mapToResponse(Participation p) {
+        return new ParticipationResponse(
+                p.getId(),
+                p.getUserId(),
+                p.getEventId(),
+                p.getStatus(),
+                p.getCreatedAt()
+        );
     }
 }
