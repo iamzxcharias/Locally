@@ -3,12 +3,8 @@ package persistence.repository;
 import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import persistence.entity.EventJpaEntity;
-import persistence.entity.ParticipationJpaEntity;
-import persistence.entity.UserJpaEntity;
+import org.junit.jupiter.api.*;
+import persistence.entity.*;
 import domain.model.ParticipationStatus;
 
 import java.time.LocalDateTime;

@@ -17,21 +17,17 @@ class ParticipationMapperTest {
 
     @Test
     void shouldMapDomainToEntity() {
-        // Given: Ein Participation-Objekt aus der Domain
         UUID id = UUID.randomUUID();
         UUID userId = UUID.randomUUID();
         UUID eventId = UUID.randomUUID();
         LocalDateTime now = LocalDateTime.now();
 
-        // Nutzt den 5er-Konstruktor (muss public sein!)
         Participation domainParticipation = new Participation(
                 id, userId, eventId, ParticipationStatus.GOING, now
         );
 
-        // When: Mapping zur Entity
         ParticipationJpaEntity entity = mapper.toEntity(domainParticipation);
 
-        // Then: Prüfung der Werte
         assertNotNull(entity);
         assertEquals(id, entity.getId());
         assertEquals(userId, entity.getUserId());
@@ -42,7 +38,6 @@ class ParticipationMapperTest {
 
     @Test
     void shouldMapEntityToDomain() {
-        // Given: Eine Entity aus der Datenbank
         UUID id = UUID.randomUUID();
         UUID userId = UUID.randomUUID();
         UUID eventId = UUID.randomUUID();
@@ -52,10 +47,8 @@ class ParticipationMapperTest {
                 id, userId, eventId, ParticipationStatus.INTERESTED, now
         );
 
-        // When: Mapping zurück zur Domain
         Participation domainParticipation = mapper.toDomain(entity);
 
-        // Then: Prüfung der Werte
         assertNotNull(domainParticipation);
         assertEquals(id, domainParticipation.getId());
         assertEquals(userId, domainParticipation.getUserId());
