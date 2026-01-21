@@ -1,16 +1,12 @@
 package api.controller;
 
-import api.dto.EventListResponse;
-import api.dto.EventRequest;
-import api.dto.EventResponse;
+import api.dto.*;
 import domain.model.Event;
 import domain.service.EventService;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.CacheControl;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -50,35 +46,20 @@ public class EventResource {
             @DefaultValue("0") @QueryParam("page") int page,
             @DefaultValue("20") @QueryParam("size") int size
     ) {
-        if (page < 0) throw new BadRequestException("page must be >= 0");
-        if (size <= 0 || size > 50) throw new BadRequestException("size must be between 1 and 50");
+        validatePaging(page, size);
 
         LocalDateTime fromDt = parseDateTime(from);
         LocalDateTime toDt = parseDateTime(to);
 
-        if (fromDt != null && toDt != null && fromDt.isAfter(toDt)) {
-            throw new BadRequestException("from must be <= to");
-        }
+        validateDateRange(fromDt, toDt);
 
-        List<EventResponse> items = eventService.searchEvents(q, category, fromDt, toDt, page, size).stream()
-                .map(this::mapToResponse)
-                .collect(Collectors.toList());
-
-        long total = eventService.countSearchEvents(q, category, fromDt, toDt);
-
-        EventListResponse body = new EventListResponse(items, page, size, total);
-
-        CacheControl cc = new CacheControl();
-        cc.setMaxAge(30);
-
-        return Response.ok(body).cacheControl(cc).build();
+        return buildPagedResponse(q, category, fromDt, toDt, page, size);
     }
 
     @GET
     @Path("/{id}")
     public EventResponse getEvent(@PathParam("id") UUID id) {
-        Event event = eventService.getEventById(id);
-        return mapToResponse(event);
+        return mapToResponse(eventService.getEventById(id));
     }
 
     @PUT
@@ -104,6 +85,52 @@ public class EventResource {
         return Response.noContent().build();
     }
 
+    @GET
+    @Path("/discover")
+    public Response discoverEvents(
+            @QueryParam("q") String q,
+            @QueryParam("category") String category,
+            @QueryParam("from") String from,
+            @QueryParam("to") String to,
+            @DefaultValue("0") @QueryParam("page") int page,
+            @DefaultValue("20") @QueryParam("size") int size
+    ) {
+        validatePaging(page, size);
+
+        LocalDateTime fromDt = parseDateTime(from);
+        if (fromDt == null) fromDt = LocalDateTime.now();
+        LocalDateTime toDt = parseDateTime(to);
+
+        validateDateRange(fromDt, toDt);
+
+        return buildPagedResponse(q, category, fromDt, toDt, page, size);
+    }
+
+    private Response buildPagedResponse(String q, String category, LocalDateTime from, LocalDateTime to, int page, int size) {
+        List<EventResponse> items = eventService.searchEvents(q, category, from, to, page, size).stream()
+                .map(this::mapToResponse)
+                .collect(Collectors.toList());
+
+        long total = eventService.countSearchEvents(q, category, from, to);
+        EventListResponse body = new EventListResponse(items, page, size, total);
+
+        CacheControl cc = new CacheControl();
+        cc.setMaxAge(30);
+
+        return Response.ok(body).cacheControl(cc).build();
+    }
+
+    private void validatePaging(int page, int size) {
+        if (page < 0) throw new BadRequestException("page must be >= 0");
+        if (size <= 0 || size > 50) throw new BadRequestException("size must be between 1 and 50");
+    }
+
+    private void validateDateRange(LocalDateTime from, LocalDateTime to) {
+        if (from != null && to != null && from.isAfter(to)) {
+            throw new BadRequestException("from must be <= to");
+        }
+    }
+
     private LocalDateTime parseDateTime(String value) {
         if (value == null || value.isBlank()) return null;
         try {
@@ -127,43 +154,4 @@ public class EventResource {
                 event.getParticipantCount()
         );
     }
-
-    @GET
-    @Path("/discover")
-    public Response discoverEvents(
-        @QueryParam("q") String q,
-        @QueryParam("category") String category,
-        @QueryParam("from") String from,
-        @QueryParam("to") String to,
-        @DefaultValue("0") @QueryParam("page") int page,
-        @DefaultValue("20") @QueryParam("size") int size
-    ) {
-        if (page < 0) throw new BadRequestException("page must be >= 0");
-        if (size <= 0 || size > 50) throw new BadRequestException("size must be between 1 and 50");
-
-        LocalDateTime fromDt = parseDateTime(from);
-        LocalDateTime toDt = parseDateTime(to);
-
-        if (fromDt == null) {
-            fromDt = LocalDateTime.now();
-        }
-
-        if (fromDt != null && toDt != null && fromDt.isAfter(toDt)) {
-        throw new BadRequestException("from must be <= to");
-        }
-
-        List<EventResponse> items = eventService.searchEvents(q, category, fromDt, toDt, page, size).stream()
-            .map(this::mapToResponse)
-            .collect(Collectors.toList());
-
-        long total = eventService.countSearchEvents(q, category, fromDt, toDt);
-
-        EventListResponse body = new EventListResponse(items, page, size, total);
-
-        CacheControl cc = new CacheControl();
-        cc.setMaxAge(30);
-
-        return Response.ok(body).cacheControl(cc).build();
-    }
-
 }
