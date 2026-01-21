@@ -4,12 +4,11 @@ import domain.model.User;
 import domain.port.UserRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import persistence.entity.UserJpaEntity;
 import persistence.mapper.UserMapper;
 import persistence.repository.UserJpaRepository;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
@@ -23,7 +22,8 @@ public class UserPersistenceAdapter implements UserRepository {
 
     @Override
     public void save(User user) {
-        userJpaRepository.getEntityManager().merge(userMapper.toEntity(user));
+        UserJpaEntity entity = userMapper.toEntity(user);
+        userJpaRepository.getEntityManager().merge(entity);
     }
 
     @Override
@@ -39,7 +39,6 @@ public class UserPersistenceAdapter implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        // Panache listAll() nutzen und per Mapper umwandeln
         return userJpaRepository.listAll().stream()
                 .map(userMapper::toDomain)
                 .collect(Collectors.toList());
@@ -53,8 +52,8 @@ public class UserPersistenceAdapter implements UserRepository {
     @Override
     public List<User> search(String q, int page, int size) {
         return userJpaRepository.search(q, page, size).stream()
-            .map(userMapper::toDomain)
-            .collect(java.util.stream.Collectors.toList());
+                .map(userMapper::toDomain)
+                .collect(Collectors.toList());
     }
 
     @Override
