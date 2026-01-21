@@ -9,9 +9,7 @@ import persistence.entity.FriendshipJpaEntity;
 import persistence.mapper.FriendshipMapper;
 import persistence.repository.FriendshipJpaRepository;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
@@ -35,13 +33,11 @@ public class FriendshipPersistenceAdapter implements FriendshipRepository {
                 .map(friendshipMapper::toDomain);
     }
 
-    // FIX: Die Methode, die gefehlt hat
     @Override
     public boolean existsById(UUID id) {
         return friendshipJpaRepository.findByIdOptional(id).isPresent();
     }
 
-    // FIX: Die Lösch-Methode
     @Override
     public void delete(UUID id) {
         friendshipJpaRepository.deleteById(id);
@@ -56,7 +52,6 @@ public class FriendshipPersistenceAdapter implements FriendshipRepository {
 
     @Override
     public boolean existsByRequesterAndAddressee(UUID requesterId, UUID addresseeId) {
-        // Nutzt die Panache-Logik, um zu prüfen ob eine Kombination existiert
         return friendshipJpaRepository.count("requesterId = ?1 and addresseeId = ?2", requesterId, addresseeId) > 0;
     }
 
@@ -64,7 +59,7 @@ public class FriendshipPersistenceAdapter implements FriendshipRepository {
     public List<Friendship> searchForUser(UUID userId, FriendshipStatus status, UUID friendId, String friendQ, int page, int size) {
         return friendshipJpaRepository.searchForUser(userId, status, friendId, friendQ, page, size).stream()
                 .map(friendshipMapper::toDomain)
-                .collect(java.util.stream.Collectors.toList());
+                .collect(Collectors.toList());
     }
 
     @Override
