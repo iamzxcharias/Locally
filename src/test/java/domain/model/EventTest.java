@@ -42,11 +42,9 @@ class EventTest {
     @Test
     @DisplayName("Sollte Fehler werfen, wenn die Latitude außerhalb des Bereichs liegt")
     void shouldThrowExceptionForInvalidLatitude() {
-        // Teste über 90 Grad
         assertThrows(IllegalArgumentException.class, () ->
                 new Event("Titel", "CAT", "Desc", futureDate, "Place", 90.1, 10.0, creatorId)
         );
-        // Teste unter -90 Grad
         assertThrows(IllegalArgumentException.class, () ->
                 new Event("Titel", "CAT", "Desc", futureDate, "Place", -91.0, 10.0, creatorId)
         );
@@ -55,11 +53,9 @@ class EventTest {
     @Test
     @DisplayName("Sollte Fehler werfen, wenn die Longitude außerhalb des Bereichs liegt")
     void shouldThrowExceptionForInvalidLongitude() {
-        // Teste über 180 Grad
         assertThrows(IllegalArgumentException.class, () ->
                 new Event("Titel", "CAT", "Desc", futureDate, "Place", 49.0, 180.5, creatorId)
         );
-        // Teste unter -180 Grad
         assertThrows(IllegalArgumentException.class, () ->
                 new Event("Titel", "CAT", "Desc", futureDate, "Place", 49.0, -181.0, creatorId)
         );
