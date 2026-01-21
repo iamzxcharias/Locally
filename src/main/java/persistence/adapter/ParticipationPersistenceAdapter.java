@@ -1,7 +1,6 @@
 package persistence.adapter;
 
-import domain.model.Participation;
-import domain.model.ParticipationStatus;
+import domain.model.*;
 import domain.port.ParticipationRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -9,9 +8,8 @@ import persistence.entity.ParticipationJpaEntity;
 import persistence.mapper.ParticipationMapper;
 import persistence.repository.ParticipationJpaRepository;
 
-import java.util.Optional;
-import java.util.UUID;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class ParticipationPersistenceAdapter implements ParticipationRepository {
@@ -56,7 +54,7 @@ public class ParticipationPersistenceAdapter implements ParticipationRepository 
     public List<Participation> search(UUID userId, UUID eventId, ParticipationStatus status, int page, int size) {
         return participationJpaRepository.search(userId, eventId, status, page, size).stream()
                 .map(participationMapper::toDomain)
-                .collect(java.util.stream.Collectors.toList());
+                .collect(Collectors.toList());
     }
 
     @Override
