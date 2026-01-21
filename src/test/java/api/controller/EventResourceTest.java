@@ -13,16 +13,15 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 
 @QuarkusTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class EventResourceTest {
+class EventResourceTest {
 
-    static String eventId;
-    // Die ID von Alice aus der MockData.sql
-    static final String ALICE_ID = "11111111-1111-1111-1111-111111111111";
+    private static String eventId;
+    private static final String ALICE_ID = "11111111-1111-1111-1111-111111111111";
 
     @Test
     @Order(1)
-    public void testCreateEvent() {
-        String jsonBody = String.format("""
+    void testCreateEvent() {
+        String jsonBody = """
                 {
                   "title": "Kicker Turnier",
                   "description": "Feierabend-Zocken",
@@ -33,7 +32,7 @@ public class EventResourceTest {
                   "lng": 10.0,
                   "creatorId": "%s"
                 }
-                """, ALICE_ID);
+                """.formatted(ALICE_ID);
 
         eventId = given()
                 .contentType(ContentType.JSON)
@@ -44,13 +43,12 @@ public class EventResourceTest {
                 .statusCode(201)
                 .body("id", notNullValue())
                 .body("title", is("Kicker Turnier"))
-                .extract()
-                .path("id");
+                .extract().path("id");
     }
 
     @Test
     @Order(2)
-    public void testGetEvent() {
+    void testGetEvent() {
         given()
                 .pathParam("id", eventId)
                 .when()
@@ -63,8 +61,8 @@ public class EventResourceTest {
 
     @Test
     @Order(3)
-    public void testUpdateEvent() {
-        String updatedBody = String.format("""
+    void testUpdateEvent() {
+        String updatedBody = """
                 {
                   "title": "Großes Kicker Turnier",
                   "description": "Jetzt mit Pizza",
@@ -75,7 +73,7 @@ public class EventResourceTest {
                   "lng": 10.0,
                   "creatorId": "%s"
                 }
-                """, ALICE_ID);
+                """.formatted(ALICE_ID);
 
         given()
                 .contentType(ContentType.JSON)
@@ -90,7 +88,7 @@ public class EventResourceTest {
 
     @Test
     @Order(4)
-    public void testDeleteEvent() {
+    void testDeleteEvent() {
         given()
                 .pathParam("id", eventId)
                 .when()
@@ -98,7 +96,6 @@ public class EventResourceTest {
                 .then()
                 .statusCode(204);
 
-        // Check 404
         given()
                 .pathParam("id", eventId)
                 .when()
@@ -109,9 +106,8 @@ public class EventResourceTest {
 
     @Test
     @Order(5)
-    public void testCreateEventWithEmptyTitle_ShouldReturn400() {
-        // Ein JSON-Body mit einem leeren Titel
-        String invalidJsonBody = String.format("""
+    void testCreateEventWithEmptyTitle_ShouldReturn400() {
+        String invalidJsonBody = """
             {
               "title": "", 
               "description": "Ein Test ohne Titel",
@@ -122,7 +118,7 @@ public class EventResourceTest {
               "lng": 10.0,
               "creatorId": "%s"
             }
-            """, ALICE_ID);
+            """.formatted(ALICE_ID);
 
         given()
                 .contentType(ContentType.JSON)
@@ -130,6 +126,6 @@ public class EventResourceTest {
                 .when()
                 .post("/events")
                 .then()
-                .statusCode(400); // Wir erwarten hier einen Bad Request (400) wegen @NotBlank
+                .statusCode(400);
     }
 }
