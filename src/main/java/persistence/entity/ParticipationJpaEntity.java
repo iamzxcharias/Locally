@@ -10,7 +10,7 @@ import java.util.UUID;
 public class ParticipationJpaEntity {
 
     @Id
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column(nullable = false, updatable = false)
     private UUID id;
 
     @Column(name = "user_id", nullable = false)
@@ -20,17 +20,15 @@ public class ParticipationJpaEntity {
     private UUID eventId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(nullable = false)
     private ParticipationStatus status;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    // Standard-Konstruktor
     protected ParticipationJpaEntity() {
     }
 
-    // Konstruktor
     public ParticipationJpaEntity(UUID id, UUID userId, UUID eventId, ParticipationStatus status, LocalDateTime createdAt) {
         this.id = id;
         this.userId = userId;
@@ -39,10 +37,18 @@ public class ParticipationJpaEntity {
         this.createdAt = createdAt;
     }
 
-    // Getter
     public UUID getId() { return id; }
+    public void setId(UUID id) { this.id = id; }
+
     public UUID getUserId() { return userId; }
+    public void setUserId(UUID userId) { this.userId = userId; }
+
     public UUID getEventId() { return eventId; }
+    public void setEventId(UUID eventId) { this.eventId = eventId; }
+
     public ParticipationStatus getStatus() { return status; }
+    public void setStatus(ParticipationStatus status) { this.status = status; }
+
     public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }
