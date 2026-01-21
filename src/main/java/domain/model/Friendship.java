@@ -11,11 +11,7 @@ public class Friendship {
     private final LocalDateTime createdAt;
 
     public Friendship(UUID requesterId, UUID addresseeId) {
-        this.id = UUID.randomUUID();
-        this.requesterId = requesterId;
-        this.addresseeId = addresseeId;
-        this.status = FriendshipStatus.PENDING; // Standardstartwert
-        this.createdAt = LocalDateTime.now();
+        this(UUID.randomUUID(), requesterId, addresseeId, FriendshipStatus.PENDING, LocalDateTime.now());
     }
 
     public Friendship(UUID id, UUID requesterId, UUID addresseeId, FriendshipStatus status, LocalDateTime createdAt) {
@@ -26,7 +22,6 @@ public class Friendship {
         this.createdAt = createdAt;
     }
 
-
     public Friendship accept() {
         if (this.status != FriendshipStatus.PENDING) {
             throw new IllegalStateException("Only pending requests can be accepted.");
@@ -34,7 +29,6 @@ public class Friendship {
         return new Friendship(this.id, this.requesterId, this.addresseeId, FriendshipStatus.ACCEPTED, this.createdAt);
     }
 
-    // Getter
     public UUID getId() { return id; }
     public UUID getRequesterId() { return requesterId; }
     public UUID getAddresseeId() { return addresseeId; }
