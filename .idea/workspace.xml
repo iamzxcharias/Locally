@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="">
+    <list default="true" id="0a0f7a82-b075-4a5f-842b-e98881a0cab4" name="Changes" comment="Invitations &amp; UC5 implementiert">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/model/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/api/controller/EventDiscoverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/api/controller/EventDiscoverTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/api/controller/EventQueryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/api/controller/EventQueryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/controller/ParticipationResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/controller/ParticipationResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/model/ParticipationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/model/ParticipationStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/port/FriendshipRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/port/FriendshipRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/service/ParticipationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/service/ParticipationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/adapter/FriendshipPersistenceAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/adapter/FriendshipPersistenceAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/domain/service/ParticipationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/domain/service/ParticipationServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +26,25 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Sami765&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/iamzxcharias/Locally.git&quot;,
+    &quot;accountId&quot;: &quot;da5c60dd-82df-4ad0-8ae6-6d7a57e409ac&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -33,7 +53,7 @@
     <option name="jreName" value="21" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -46,37 +66,100 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.TestClass.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EventJpaRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EventMapperTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FriendshipJpaRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FriendshipMapperTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ParticipationJpaRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ParticipationMapperTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserJpaRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserMapperTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.Locally [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/events-filtering-paging-caching&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/lucas/Studium/Semester_5/Backend/Portfolio/Locally&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.TestClass.executor": "Run",
+    "JUnit.All in Locally.executor": "Run",
+    "JUnit.EventJpaRepositoryTest.executor": "Run",
+    "JUnit.EventMapperTest.executor": "Run",
+    "JUnit.EventSearchTest.executor": "Run",
+    "JUnit.FriendshipJpaRepositoryTest.executor": "Run",
+    "JUnit.FriendshipMapperTest.executor": "Run",
+    "JUnit.InvitationResourceTest.executor": "Run",
+    "JUnit.ParticipationJpaRepositoryTest.executor": "Run",
+    "JUnit.ParticipationMapperTest.executor": "Run",
+    "JUnit.ParticipationServiceTest.executor": "Run",
+    "JUnit.UserJpaRepositoryTest.executor": "Run",
+    "JUnit.UserMapperTest.executor": "Run",
+    "Maven.Locally [install].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "Invitations&&UC5-implementiert",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/lucas/Studium/Semester_5/Backend/Portfolio/Locally",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RunManager" selected="JUnit.All in Locally">
+    <configuration name="All in Locally" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Locally" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EventSearchTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Locally" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="api.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="api.controller" />
+      <option name="MAIN_CLASS_NAME" value="api.controller.EventSearchTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InvitationResourceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Locally" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="api.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="api.controller" />
+      <option name="MAIN_CLASS_NAME" value="api.controller.InvitationResourceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParticipationServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Locally" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="domain.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="domain.service" />
+      <option name="MAIN_CLASS_NAME" value="domain.service.ParticipationServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Locally" type="QuarkusRunConfigurationType" factoryName="Quarkus" nameIsGenerated="true">
       <module name="Locally" />
       <QsMavenRunConfiguration>
@@ -94,7 +177,6 @@
                   <option value="quarkus:dev" />
                 </list>
               </option>
-              <option name="multimoduleDir" />
               <option name="pomFileName" value="pom.xml" />
               <option name="profilesMap">
                 <map />
@@ -109,12 +191,26 @@
         </MavenSettings>
         <targetMavenLocalRepo />
         <emulateTerminal>false</emulateTerminal>
-        <profile>dev</profile>
       </QsMavenRunConfiguration>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in Locally" />
+        <item itemvalue="JUnit.InvitationResourceTest" />
+        <item itemvalue="JUnit.EventSearchTest" />
+        <item itemvalue="JUnit.ParticipationServiceTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -127,10 +223,34 @@
       <workItem from="1768828198387" duration="631000" />
       <workItem from="1768829859677" duration="16000" />
     </task>
+    <task id="LOCAL-00001" summary="Invitations &amp; UC5 implementiert">
+      <option name="closed" value="true" />
+      <created>1769018978013</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1769018978013</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Invitations &amp; UC5 implementiert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Invitations &amp; UC5 implementiert" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

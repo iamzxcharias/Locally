@@ -7,7 +7,9 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @ApplicationScoped
@@ -16,14 +18,17 @@ public class ParticipationService {
     private final ParticipationRepository participationRepository;
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
+    private final FriendshipRepository friendshipRepository;
 
     @Inject
     public ParticipationService(ParticipationRepository participationRepository,
                                 EventRepository eventRepository,
-                                UserRepository userRepository) {
+                                UserRepository userRepository,
+                                FriendshipRepository friendshipRepository) {
         this.participationRepository = participationRepository;
         this.eventRepository = eventRepository;
         this.userRepository = userRepository;
+        this.friendshipRepository = friendshipRepository;
     }
 
     @Transactional
@@ -82,5 +87,34 @@ public class ParticipationService {
     private void updateEventParticipantCount(UUID eventId) {
         int newCount = (int) participationRepository.countByEventId(eventId);
         eventRepository.updateParticipantCount(eventId, newCount);
+    }
+    @Transactional
+    public void inviteFriend(UUID currentUserId, UUID friendId, UUID eventId) {
+        // Check 1: Sind sie Freunde?
+        if (!friendshipRepository.areFriends(currentUserId, friendId)) {
+            throw new IllegalArgumentException("Du kannst nur bestätigte Freunde einladen.");
+        }
+
+        // Check 2: Existiert das Event?
+        if (eventRepository.findById(eventId).isEmpty()) {
+            throw new NotFoundException("Event nicht gefunden.");
+        }
+
+        // Check 3: Hat der User schon einen Status? (Teilnahme oder schon eingeladen)
+        Optional<Participation> existing = participationRepository.findByUserIdAndEventId(friendId, eventId);
+        if (existing.isPresent()) {
+            throw new IllegalStateException("User hat bereits einen Status für dieses Event.");
+        }
+
+        // Alles ok -> Einladung erstellen
+        Participation invitation = new Participation(
+                UUID.randomUUID(),
+                friendId,
+                eventId,
+                ParticipationStatus.INVITED,
+                LocalDateTime.now()
+        );
+
+        participationRepository.save(invitation);
     }
 }

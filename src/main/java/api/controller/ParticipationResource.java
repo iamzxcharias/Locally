@@ -6,7 +6,7 @@ import domain.service.ParticipationService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
-
+import api.dto.InvitationRequest;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -85,5 +85,20 @@ public class ParticipationResource {
                 p.getStatus(),
                 p.getCreatedAt()
         );
+    }
+    @POST
+    @Path("/invite")
+    public Response inviteUser(InvitationRequest request) {
+        UUID currentUserId = UUID.fromString("11111111-1111-1111-1111-111111111111");
+        try {
+            participationService.inviteFriend(currentUserId, request.targetUserId, request.eventId);
+            return Response.status(Response.Status.CREATED).build();
+        } catch (IllegalArgumentException | IllegalStateException e) {
+
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        } catch (NotFoundException e) {
+
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
     }
 }

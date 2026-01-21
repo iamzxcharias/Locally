@@ -66,4 +66,20 @@ public class FriendshipPersistenceAdapter implements FriendshipRepository {
     public long countSearchForUser(UUID userId, FriendshipStatus status, UUID friendId, String friendQ) {
         return friendshipJpaRepository.countSearchForUser(userId, status, friendId, friendQ);
     }
+
+    @Override
+    public boolean areFriends(UUID userA, UUID userB) {
+        // Wir prüfen, ob eine Freundschaft (A->B oder B->A) mit Status ACCEPTED existiert
+        String query = "SELECT count(f) FROM FriendshipJpaEntity f " +
+                "WHERE ((f.requesterId = :a AND f.addresseeId = :b) " +
+                "OR (f.requesterId = :b AND f.addresseeId = :a)) " +
+                "AND f.status = 'ACCEPTED'";
+
+        Long count = friendshipJpaRepository.getEntityManager().createQuery(query, Long.class)
+                .setParameter("a", userA)
+                .setParameter("b", userB)
+                .getSingleResult();
+
+        return count > 0;
+    }
 }
