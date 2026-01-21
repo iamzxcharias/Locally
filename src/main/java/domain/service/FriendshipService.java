@@ -6,6 +6,7 @@ import domain.port.FriendshipRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.NotFoundException;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,16 +21,14 @@ public class FriendshipService {
         this.friendshipRepository = friendshipRepository;
     }
 
-
     public List<Friendship> getFriendshipsForUser(UUID userId) {
         return friendshipRepository.findByUserId(userId);
     }
 
     public Friendship getFriendshipById(UUID id) {
         return friendshipRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Friendship not found with id: " + id));
+                .orElseThrow(() -> new NotFoundException("Friendship not found with id: " + id));
     }
-
 
     @Transactional
     public Friendship requestFriendship(UUID requesterId, UUID addresseeId) {
@@ -42,29 +41,23 @@ public class FriendshipService {
         }
 
         Friendship friendship = new Friendship(requesterId, addresseeId);
-
         friendshipRepository.save(friendship);
         return friendship;
     }
 
-
     @Transactional
     public Friendship acceptFriendship(UUID friendshipId) {
-        Friendship friendship = friendshipRepository.findById(friendshipId)
-                .orElseThrow(() -> new RuntimeException("Friendship request not found."));
-
+        Friendship friendship = getFriendshipById(friendshipId);
         Friendship acceptedFriendship = friendship.accept();
 
         friendshipRepository.save(acceptedFriendship);
-
         return acceptedFriendship;
     }
 
     @Transactional
     public void deleteFriendship(UUID id) {
-        // Wir prüfen erst, ob sie existiert, um eine saubere Fehlermeldung zu geben
         if (!friendshipRepository.existsById(id)) {
-            throw new RuntimeException("Friendship not found with id: " + id);
+            throw new NotFoundException("Friendship not found with id: " + id);
         }
         friendshipRepository.delete(id);
     }
