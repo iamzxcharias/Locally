@@ -19,16 +19,17 @@ public class EventJpaEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(nullable = false)
+    @Column(name = "starts_at", nullable = false)
     private LocalDateTime startsAt;
 
+    @Column(name = "place_name")
     private String placeName;
 
     private Double lat;
 
     private Double lng;
 
-    @Column(nullable = false)
+    @Column(name = "creator_id", nullable = false)
     private UUID creatorId;
 
     @Column(name = "participant_count", nullable = false)

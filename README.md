@@ -1,59 +1,96 @@
-# Locally - Backend Dokumentation
+# Locally - Backend Documentation
 
-Locally ist eine Plattform zum Entdecken und Teilen kleiner Community-Events in der Nachbarschaft, die auf einer einfachen, kartenbasierten Schnittstelle basiert. Das Backend stellt eine REST-API bereit, um Nutzer, Veranstaltungen, Teilnahmen und soziale Interaktionen zu verwalten.
+Locally is a platform for discovering and sharing small community events in the neighborhood, based on a simple, map-based interface. The backend provides a REST API to manage users, events, participations, and social interactions.
 
-## Architektur
+## Architecture
 
-Das Projekt implementiert eine hexagonale Architektur (Ports and Adapters), um eine strikte Trennung zwischen der Geschäftslogik und der technischen Infrastruktur zu gewährleisten.
+The project implements a hexagonal architecture (Ports and Adapters) to ensure a strict separation between business logic and technical infrastructure.
 
 
-### Verzeichnisstruktur
-* domain: Enthält den Kern der Anwendung inklusive der Geschäftsmodelle, Services und Schnittstellen (Ports).
-* api: Fungiert als Inbound-Adapter und stellt REST-Controller sowie DTOs für die Kommunikation mit dem Client bereit.
-* persistence: Fungiert als Outbound-Adapter und beinhaltet das Datenbank-Mapping, Repositories und Mapper zur Übersetzung zwischen technischer Entity und fachlichem Modell.
+### Directory Structure
+* domain: Contains the core of the application including business models, services, and interfaces (ports).
+* api: Acts as the inbound adapter and provides REST controllers as well as DTOs for communication with the client.
+* persistence: Acts as the outbound adapter and contains database mapping, repositories, and mappers for translating between technical entities and the domain model.
 
-## Funktionsumfang
+## Scope of Functionality
 
-Das System deckt folgende Anwendungsfälle ab:
-* Event-Management (UC1): Erstellung und Verwaltung von Events inklusive Validierung von Titel, Datum und Geodaten.
-* Event-Suche (UC2): Filtern von Veranstaltungen nach Kategorien, Zeiträumen oder Suchbegriffen mit Unterstützung für Geospatial-Daten.
-* Teilnahme-System (UC3): Möglichkeit für Nutzer, ihr Interesse oder ihre Teilnahme an Events zu signalisieren.
-* Soziale Funktionen (UC4 & UC5): Einladen von Freunden zu Events und Einsehen der Aktivitäten von vernetzten Nutzern.
+The system covers the following use cases:
+* Event Management (UC1): Creation and management of events including validation of title, date, and geodata.
+* Event Search (UC2): Filtering events by categories, time ranges, or search terms with support for geospatial data.
+* Participation System (UC3): Allows users to indicate their interest in or participation in events.
+* Social Features (UC4 & UC5): Inviting friends to events and viewing the activities of connected users.
 
-## Datenintegrität
+## Data Integrity
 
-Die Geschäftsregeln werden direkt im Domain-Modell erzwungen, um einen konsistenten Systemzustand sicherzustellen:
-* Events müssen einen Titel und einen Ersteller besitzen.
-* Das Startdatum muss zum Zeitpunkt der Erstellung in der Zukunft liegen.
-* Geographische Koordinaten müssen in den validen Bereichen für Breitengrad (-90 bis 90) und Längengrad (-180 bis 180) liegen.
+Business rules are enforced directly in the domain model to ensure a consistent system state:
+* Events must have a title and a creator.
+* The start date must be in the future at the time of creation.
+* Geographic coordinates must be within valid ranges for latitude (-90 to 90) and longitude (-180 to 180).
 
-## Starten des Projekts
+## Running the Project
 
-### Voraussetzungen
-* Installiertes Java 21.
-* Maven.
+### Prerequisites
+* Docker (Windows: Docker Desktop must be installed and running)
+* Docker Compose
+* No processes running on port 8080
 
-### Ausführung
-Um das Projekt im Entwicklungsmodus zu starten (inklusive Hot-Reload), nutzen Sie folgenden Befehl im Hauptverzeichnis:
+### Deployment
+Clone the repository and start the application from the project root (where docker-compose.yml is located):
 
-```text
-mvn quarkus:dev
+```bash
+git clone https://github.com/iamzxcharias/Locally.git
+cd Locally
 ```
 
-Alternativ über den Wrapper:
-
-```text
-./mvnw quarkus:dev
+## Build and Start the Docker Container
+```bash
+docker-compose up --build -d
+```
+Verify the container is running:
+```bash
+docker ps
 ```
 
-## Testen
+## Application Access
+Once started, the application will be available at:
+* http://localhost:8080/events
 
-Das Projekt umfasst Unit Tests für die Geschäftslogik sowie Integrationstests für die REST-Schnittstellen und die Persistenzschicht.
+If you want to watch the startup logs:
+```bash
+docker logs -f locally
+```
 
-Um alle Tests gesammelt auszuführen und das Projekt vorher zu bereinigen, verwenden Sie:
+## Testing
+You can run the test suite inside the running container with:
+```bash
+docker exec -it locally mvn test
+```
+You will see the test output directly in the console.
+If you want to inspect the test reports afterwards, they are located in: `target/surefire-reports`
 
-```text
-mvn clean test
+## Stopping the Application
+If you need to stop the application:
+```bash
+docker-compose down
+```
+This will stop and remove the application container.
+
+## Full Cleanup
+If you want to completely reset the environment:
+```bash
+docker-compose down -v --remove-orphans
+```
+After that, you have to rebuild and start everything again.
+
+## Restarting the Application After Stopping
+If you've previously stopped the application container or the database container and want to restart it:
+```bash
+docker-compose up -d
+```
+If you made changes and need to rebuild before restarting, use:
+```bash
+docker-compose build --no-cache -d
+docker-compose up -d
 ```
 
 ## API-Übersicht
